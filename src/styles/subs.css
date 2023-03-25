@@ -1,0 +1,15 @@
+@media (max-width:1000px) {
+    .subcot {
+        font-size: small;
+
+    }
+}
+
+@media (max-width:1150px) {
+    .Subsec{
+        height: 60vh;
+      }
+    .subdiv {
+        height: 40vh;
+    }
+}

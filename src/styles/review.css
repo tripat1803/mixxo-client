@@ -1,0 +1,126 @@
+.review {
+	/* min-height: 100vh; */
+	background-color: #febb8a;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 64px;
+}
+
+.row div {
+	margin: 8px;
+	width: 260px;
+	background-color: whitesmoke;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.revOverlay {
+	background-color: rgb(37, 28, 28);
+	color: whitesmoke;
+	display: flex;
+	flex-direction: column;
+	filter: grayscale(70%);
+	opacity: 0;
+	transition: all 1s;
+	padding: 18px 24px;
+}
+
+.revOverlay p {
+	height: 50%;
+	margin-top: -10%;
+	font-size: small;
+	padding-top: 10%;
+	font-weight: 600;
+}
+.revOverlay h1 {
+	border-bottom: 2px solid white;
+	width: 60%;
+}
+
+.date {
+	align-self: flex-end;
+	font-size: 10px;
+	background-color: crimson;
+	margin-top: 60%;
+}
+
+.row div:hover .revOverlay {
+	opacity: 0.8;
+}
+
+/* #row1 {
+	margin-top: -18px;
+	margin-left: 15px;
+}
+
+#row2 {
+	margin-top: -35px;
+}
+
+#row3 {
+	margin-top: -60px;
+} */
+
+/* #row4 {
+	margin-top: -15px;
+}
+
+#row5 {
+	margin-top: -40px;
+} */
+
+@media (max-width: 1250px) {
+	.revImg {
+		display: none;
+	}
+	.reviewgrids {
+		width: 80%;
+	}
+	.review {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1212px) {
+	.reviewgrids {
+		height: 80vh;
+	}
+}
+@media (max-width: 840px) {
+	.reviewgrids {
+		height: 70vh;
+	}
+}
+@media (max-width: 600px) {
+	.review {
+		justify-content: center;
+		height: 70vh;
+		padding: 2%;
+	}
+	.revImg {
+		display: none;
+	}
+	.reviewgrids {
+		height: 50vh;
+		width: 100%;
+	}
+	.main-container {
+		gap: 3%;
+		padding: 1rem;
+	}
+	#row1 {
+		margin-left: 0%;
+	}
+}
+
+@media (max-width: 595px) {
+	.main-container {
+		gap: 2%;
+		padding: 1rem;
+	}
+	.reviewgrids {
+		height: 60vh;
+		width: 100%;
+	}
+}
