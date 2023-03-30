@@ -100,7 +100,7 @@ function Reviews({ productId, total }) {
                     setFlag(true);
                     setLoader(false);
                 }).catch((err) => {
-                    if(err.response.data.message){
+                    if (err.response.data.message) {
                         toast.error(err.response.data.message);
                     } else {
                         toast.error("Error occured, Pleaset try again later!");
@@ -125,7 +125,7 @@ function Reviews({ productId, total }) {
                 if (res.data) {
                     setReviews(res.data.details);
                     console.log(res.data.count);
-                    setPaginate((prevdata) => ({...prevdata, total: res.data.count}));
+                    setPaginate((prevdata) => ({ ...prevdata, total: res.data.count }));
                 }
                 setLoader2(false);
             }).catch(() => {
@@ -215,43 +215,17 @@ function Reviews({ productId, total }) {
                     display: "flex",
                     alignItems: "center"
                 }}>
-                    {
-                        paginateArray(paginate.total).map((item, index) => {
-                            return (
-                                <Box key={`box_${index}`} sx={{
-                                    display: "flex"
-                                }}>
-                                    {
-                                        (index === 0) && <PageBtn>
-                                            {item}
-                                        </PageBtn>
-                                    }
-                                    {
-                                        (item === paginate.page && index !== 1 && index !== 0) && <PageBtn>...</PageBtn>
-                                    }
-                                    {
-                                        (item === paginate.page && index !== 0 && index !== paginate.total - 1) && <PageBtn>
-                                            {item}
-                                        </PageBtn>
-                                    }
-                                    {
-                                        (item === paginate.page && index !== paginate.total - 1 && index !== paginate.total - 2) && <PageBtn>...</PageBtn>
-                                    }
-                                    {
-                                        (index === paginate.total - 1 && paginate.total !== 1) && <PageBtn>
-                                            {item}
-                                        </PageBtn>
-                                    }
-                                </Box>
-                            )
-                        })
-                    }
+                    <PageBtn>
+                        {paginate.page}
+                    </PageBtn>
                 </Box>
                 <IconButton onClick={() => {
                     if (!loader2) {
-                        if (paginate.page !== paginate.total) {
+                        if (paginate.page !== paginate.total / 10) {
                             setPaginate((prevdata) => ({ ...prevdata, page: ++paginate.page }));
                             setFlag(true);
+                        } else {
+                            toast.error("No more reviews ahead");
                         }
                     }
                 }}><ArrowForwardIosIcon /></IconButton>

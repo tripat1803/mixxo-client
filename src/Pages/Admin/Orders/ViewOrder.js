@@ -85,7 +85,7 @@ function ViewOrder() {
         }
         if (queryparams.get("page")) {
             fetchOrders(queryparams.get("page"));
-            setPaginate((prevdata) => ({...prevdata, page: Number(queryparams.get("page"))}))
+            setPaginate((prevdata) => ({ ...prevdata, page: Number(queryparams.get("page")) }))
         }
     }, [queryparams.get("page"), status]);
 
@@ -188,9 +188,9 @@ function ViewOrder() {
                             gap: "8px"
                         }}>
                             <IconButton onClick={() => {
-                                if(!loader){
-                                    if(paginate.page !== 1){
-                                        navigate(`/admin/order?page=${Number(paginate.page)-1}`);
+                                if (!loader) {
+                                    if (paginate.page !== 1) {
+                                        navigate(`/admin/order?page=${Number(paginate.page) - 1}`);
                                     }
                                 }
                             }}><ArrowBackIosNewIcon /></IconButton>
@@ -198,42 +198,16 @@ function ViewOrder() {
                                 display: "flex",
                                 alignItems: "center"
                             }}>
-                                {
-                                    paginateArray(paginate.total).map((item, index) => {
-                                        return (
-                                            <Box key={`box_${index}`} sx={{
-                                                display: "flex"
-                                            }}>
-                                                {
-                                                    (index === 0) && <PageBtn>
-                                                        {item}
-                                                    </PageBtn>
-                                                }
-                                                {
-                                                    (item === paginate.page && index !== 1 && index !== 0) && <PageBtn>...</PageBtn>
-                                                }
-                                                {
-                                                    (item === paginate.page && index !== 0 && index !== paginate.total-1) && <PageBtn>
-                                                        {item}
-                                                    </PageBtn>
-                                                }
-                                                {
-                                                    (item === paginate.page && index !== paginate.total-1 && index !== paginate.total-2) && <PageBtn>...</PageBtn>
-                                                }
-                                                {
-                                                    (index === paginate.total-1 && paginate.total !== 1) && <PageBtn>
-                                                        {item}
-                                                    </PageBtn>
-                                                }
-                                            </Box>
-                                        )
-                                    })
-                                }
+                                <PageBtn>
+                                    {paginate.page}
+                                </PageBtn>
                             </Box>
                             <IconButton onClick={() => {
-                                if(!loader){
-                                    if(paginate.page !== paginate.total){
+                                if (!loader) {
+                                    if (paginate.page !== paginate.total/15) {
                                         navigate(`/admin/order?page=${++paginate.page}`);
+                                    } else {
+                                        toast.error("No more orders ahead!");
                                     }
                                 }
                             }}><ArrowForwardIosIcon /></IconButton>
