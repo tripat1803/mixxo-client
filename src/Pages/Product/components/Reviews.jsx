@@ -205,7 +205,7 @@ function Reviews({ productId, total }) {
             <div className='flex justify-end gap-[8px] w-[100%] sm:w-[80%] md:w-[65%]'>
                 <IconButton onClick={() => {
                     if (!loader2) {
-                        if (paginate.page !== 1) {
+                        if (paginate.page > 1) {
                             setPaginate((prevdata) => ({ ...prevdata, page: --paginate.page }));
                             setFlag(true);
                         }
@@ -221,7 +221,7 @@ function Reviews({ productId, total }) {
                 </Box>
                 <IconButton onClick={() => {
                     if (!loader2) {
-                        if (paginate.page !== paginate.total / 10) {
+                        if (paginate.page < paginate.total / 10) {
                             setPaginate((prevdata) => ({ ...prevdata, page: ++paginate.page }));
                             setFlag(true);
                         } else {
