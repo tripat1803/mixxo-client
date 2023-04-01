@@ -189,7 +189,7 @@ function ViewOrder() {
                         }}>
                             <IconButton onClick={() => {
                                 if (!loader) {
-                                    if (paginate.page !== 1) {
+                                    if (paginate.page > 1) {
                                         navigate(`/admin/order?page=${Number(paginate.page) - 1}`);
                                     }
                                 }
@@ -204,7 +204,7 @@ function ViewOrder() {
                             </Box>
                             <IconButton onClick={() => {
                                 if (!loader) {
-                                    if (paginate.page !== paginate.total/15) {
+                                    if (paginate.page < paginate.total/15) {
                                         navigate(`/admin/order?page=${++paginate.page}`);
                                     } else {
                                         toast.error("No more orders ahead!");
