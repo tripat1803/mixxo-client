@@ -68,7 +68,10 @@ function Cart() {
             let { data } = await publicApi.post("/razorpay/checkout", {
                 items: {
                     shippingPrice,
-                    taxPrice
+                    taxPrice,
+                    notes: {
+                        userId: mongoUser._id
+                    }
                 }
             }, {
                 headers: {
@@ -76,7 +79,7 @@ function Cart() {
                 }
             });
 
-            const options = razorpayOptions(key, data.amount, data.id, (mongoUser.firstname + ((mongoUser.lastname) && " ") + mongoUser.lastname), mongoUser.email, response.data.mobile);
+            const options = razorpayOptions(key, data.amount, data.notes, data.id, (mongoUser.firstname + ((mongoUser.lastname) && " ") + mongoUser.lastname), mongoUser.email, response.data.mobile);
 
             const razorpay = new window.Razorpay(options);
             razorpay.open();
