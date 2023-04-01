@@ -6,7 +6,7 @@ export const razorpayOptions = (key, amount, orderId, name, email, contact) => {
         name: "Mixxo",
         image: "https://example.com/your_logo",
         order_id: orderId,
-        callback_url: "https://mixxo-server.vercel.app/api/razorpay/verification",
+        callback_url: `${process.env.REACT_APP_API}/api/razorpay/verification`,
         prefill: {
             "name": name,
             "email": email,
