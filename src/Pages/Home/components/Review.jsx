@@ -94,7 +94,7 @@ const Review = () => {
             <img
               className="h-full object-cover"
               alt="rev"
-              src={require("../../../Assets/lady.png")}
+              src={require("../../../Assets/Lady.png")}
             />
           </div>
         </div>
