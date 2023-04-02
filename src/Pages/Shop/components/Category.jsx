@@ -17,8 +17,8 @@ const Category = () => {
 
   let navigate = useNavigate();
   const { category } = useContext(CategoryContext);
-  const [currCat, setCurrCat] = useState();
-  const [currPg, setCurrPg] = useState();
+  const [currCat, setCurrCat] = useState(1);
+  const [currPg, setCurrPg] = useState(1);
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
   const [total, setTotal] = useState(0);
@@ -111,13 +111,11 @@ const Category = () => {
               ":hover": { bgcolor: "white", color: "black" },
             }}
             onClick={() => {
-              let cat = [];
               let totalCount = 0;
               category.forEach((item) => {
-                cat.push(item._id);
                 totalCount += item.number
               });
-              navigate(`/shop?category=${cat}&page=${1}`);
+              navigate(`/shop`);
               setTotal(totalCount);
             }}
           >
