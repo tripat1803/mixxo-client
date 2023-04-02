@@ -10,13 +10,12 @@ function ReviewCard() {
   const imageArr = [require("../../../Assets/Review/Image1.jpeg"), require("../../../Assets/Review/Image2.jpeg"), require("../../../Assets/Review/Image3.jpeg")]
 
   return (
-    <div className="relative hover:cursor-pointer">
+    <div className="relative hover:cursor-pointer ">
       <img className="absolute w-[100%] h-[100%]" src={imageArr[Math.floor(Math.random() * 3)]} alt="review-im" />
       <p className="revOverlay">
         <h1>Review</h1>
         <p>
-          Taxt Taxt Taxt Taxt Taxt Taxt Taxt Taxt Taxt Taxt Taxt Taxt Taxt Taxt
-          Taxt Taxt.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi quaerat repudiandae laborum.
         </p>
         <span className="text-[10px] text-right mt-[6px]">~ 20 january 2023</span>
       </p>
@@ -28,13 +27,13 @@ const Review = () => {
   return (
     <div className="bg-[#febb8a]">
       <div id="review" className="flex justify-center py-5 md:py-0 px-[48px] md:px-[128px]">
-        <div className="lg:w-[100%] xl:w-[60%] 2xl:w-[60%] md:w-[100%] sm:w-[100%] lg:p-[5%] xl:p-[5%_5%_5%_0px] 2xl:p-[5%_5%_5%_0px] md:p-[5%] sm:p-[5%] flex flex-col items-center justify-center">
-          <div className="h-[max-content] pb-[32px] break-words text-[38px] text-[#664A3F] text-center font-pacifico flex flex-col space-y-3">
-            <p className="landing-[100%]">Browse Our Bestsellers</p>
+        <div className="lg:w-[100%] xl:w-[50%] 2xl:w-[50%] md:w-[100%] sm:w-[100%] lg:p-[5%] xl:p-[5%_5%_5%_0px] 2xl:p-[5%_5%_5%_0px] md:p-[5%] sm:p-[5%] flex flex-col-reverse md:flex-col items-center justify-center">
+          <div className="h-[max-content] xl:hidden py-[32px] break-words text-[38px] text-[#664A3F] text-center font-pacifico flex flex-col space-y-3">
+            <p className="landing-[100%] text-2xl sm:text-2xl md:text-3xl lg:text-4xl">Browse Our Bestsellers</p>
           </div>
-          <div className="bg-[#ffd9a7] h-[max-content] w-[95vw] md:w-[78vw] lg:w-[100%] p-[16px] rounded-[64px]">
-            <div className="bg-[#FBE3D2] max-h-[50vh] shadow-reviewShadow rounded-[48px] overflow-scroll -webkit-overflow-scroll">
-              <Marquee gradientWidth={0} speed={40}>
+          <div className="bg-[#ffd9a7] h-[max-content] w-[95vw] md:w-[78vw] lg:w-[100%] p-[16px] mt-4 rounded-[164px] sm:rounded-[64px]">
+            <div className="bg-[#FBE3D2] max-h-[60vh] shadow-reviewShadow rounded-[148px]  sm:rounded-[48px] overflow-scroll -webkit-overflow-scroll">
+              <Marquee gradientWidth={0} speed={40} >
                 <div className="flex flex-row justify-around row">
                   <ReviewCard />
                   <ReviewCard />
@@ -45,7 +44,7 @@ const Review = () => {
                   <ReviewCard />
                 </div>
               </Marquee>
-              <Marquee gradientWidth={0} speed={30}>
+              <Marquee gradientWidth={0} speed={30} >
                 <div className="flex flex-row justify-around row">
                   <ReviewCard />
                   <ReviewCard />
@@ -57,7 +56,7 @@ const Review = () => {
                   <ReviewCard />
                 </div>
               </Marquee>
-              <Marquee gradientWidth={0} speed={40}>
+              <Marquee gradientWidth={0} speed={40} >
                 <div className="flex flex-row justify-around row">
                   <ReviewCard />
                   <ReviewCard />
@@ -71,12 +70,16 @@ const Review = () => {
             </div>
           </div>
         </div>
-        <div className="hidden relative xl:flex flex-col items-end w-[50%]">
+        <div className="hidden relative xl:flex flex-col items-start w-[50%]">
+        <div className="h-[max-content] pt-[40px] break-words text-[38px] text-[#664A3F] text-start font-pacifico flex flex-col space-y-3">
+            <p className="landing-[100%]">Browse Our Bestsellers</p>
+          </div>
+          <div className="flex items-center justify-center w-full h-[75%] flex-1">
           <img
-            className="h-[100%] object-scale-down"
+            className="h-full object-cover"
             alt="rev"
             src={require("../../../Assets/Lady.png")}
-          />
+          /></div>
         </div>
       </div>
     </div>

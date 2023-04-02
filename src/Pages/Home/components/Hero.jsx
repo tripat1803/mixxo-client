@@ -46,8 +46,13 @@ function Hero() {
         Shop Now
       </Button>
       <img
-        className="w-full h-full absolute object-cover object-center"
+        className="sm:flex hidden w-full h-full absolute object-cover object-center"
         src={require("../../../Assets/background.png")}
+        alt="ima"
+      />
+      <img
+        className="flex sm:hidden w-full h-full absolute object-cover object-center"
+        src={require("../../../Assets/background2.png")}
         alt="ima"
       />
     </Box>
