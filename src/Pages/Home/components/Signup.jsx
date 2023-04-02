@@ -67,7 +67,8 @@ const Signup = (props) => {
               navigate("/");
             }
           })
-          .catch(() => {
+          .catch((err) => {
+            toast.error(err.message);
             user.setLoader(false);
           });
         props.data();
