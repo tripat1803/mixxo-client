@@ -17,8 +17,8 @@ const Category = () => {
 
   let navigate = useNavigate();
   const { category } = useContext(CategoryContext);
-  const [currCat, setCurrCat] = useState(1);
-  const [currPg, setCurrPg] = useState(1);
+  const [currCat, setCurrCat] = useState();
+  const [currPg, setCurrPg] = useState();
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
   const [total, setTotal] = useState(0);
@@ -47,10 +47,10 @@ const Category = () => {
         let data = [];
         category.forEach((item, index) => {
           data.push(item._id);
+        })
+        navigate(`/shop?category=${data}&page=1`, {
+          replace: true
         });
-        fetchCategoryProducts(data, 1);
-        setCurrCat(data);
-        setCurrPg(1);
       }
     } else {
       setCurrCat(queryParams.get("category")?.split(","));
@@ -59,6 +59,10 @@ const Category = () => {
       fetchCategoryProducts(queryParams.get("category").split(","), Number(queryParams.get("page")));
     }
   }, [queryParams.get("page"), queryParams.get("category"), category]);
+
+  // useEffect(() => {
+  //   setFlag(true);
+  // }, []);
 
   if(flag){
     setTotal(0);
@@ -111,11 +115,13 @@ const Category = () => {
               ":hover": { bgcolor: "white", color: "black" },
             }}
             onClick={() => {
+              let cat = [];
               let totalCount = 0;
               category.forEach((item) => {
+                cat.push(item._id);
                 totalCount += item.number
               });
-              navigate(`/shop`);
+              navigate(`/shop?category=${cat}&page=${1}`);
               setTotal(totalCount);
             }}
           >
