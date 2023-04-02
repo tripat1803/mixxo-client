@@ -3,6 +3,7 @@ import { getIdToken } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { publicApi } from "../../../../Api/Api";
 import { UserContext } from "../../../../Context/AllContext/UserContext";
+import { toast } from "react-hot-toast";
 
 const Input = styled("input")(() => ({
   padding: "12px 16px",
@@ -55,13 +56,13 @@ function AccountPopup({ bool, setBool, setDetailsFlag }) {
   const handleAddDetail = async () => {
     let token = await getIdToken(firebaseUser);
     if (token) {
-      if (mobile.length !== 10 || !Number.isNaN(mobile)) {
+      if (mobile.length !== 10 || Number.isNaN(mobile)) {
         setPhoneValidation(true);
         setMobile("");
       } else {
         setPhoneValidation(false);
       }
-      if (pincode.length !== 6 || !Number.isNaN(pincode)) {
+      if (pincode.length !== 6 || Number.isNaN(pincode)) {
         setPinValidation(true);
         setPincode("");
       } else {
@@ -76,8 +77,8 @@ function AccountPopup({ bool, setBool, setDetailsFlag }) {
       ) {
         setValidation(false);
         if (
-          (mobile.length !== 10 || !Number.isNaN(mobile)) &&
-          (pincode.length !== 6 || !Number.isNaN(pincode))
+          (mobile.length === 10 && !Number.isNaN(mobile)) &&
+          (pincode.length === 6 && !Number.isNaN(pincode))
         ) {
           setLoader(true);
           publicApi
@@ -107,7 +108,12 @@ function AccountPopup({ bool, setBool, setDetailsFlag }) {
               setPincode("");
               setLoader(false);
             })
-            .catch(() => {
+            .catch((err) => {
+              if(err.message){
+                toast.error(err.message);
+              } else {
+                toast.error("Server error occured");
+              }
               setLoader(false);
             });
         }
@@ -153,15 +159,15 @@ function AccountPopup({ bool, setBool, setDetailsFlag }) {
             sx={
               phoneValidation
                 ? {
-                    "&::placeholder": {
-                      color: "red",
-                    },
-                  }
+                  "&::placeholder": {
+                    color: "red",
+                  },
+                }
                 : {
-                    "&::placeholder": {
-                      color: "black",
-                    },
-                  }
+                  "&::placeholder": {
+                    color: "black",
+                  },
+                }
             }
             onChange={(e) => {
               setMobile(e.target.value);
@@ -173,15 +179,15 @@ function AccountPopup({ bool, setBool, setDetailsFlag }) {
             sx={
               pinValidation
                 ? {
-                    "&::placeholder": {
-                      color: "red",
-                    },
-                  }
+                  "&::placeholder": {
+                    color: "red",
+                  },
+                }
                 : {
-                    "&::placeholder": {
-                      color: "black",
-                    },
-                  }
+                  "&::placeholder": {
+                    color: "black",
+                  },
+                }
             }
             onChange={(e) => {
               setPincode(e.target.value);
