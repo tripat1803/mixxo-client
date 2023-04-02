@@ -24,15 +24,12 @@ function ProductCard({ id, imageUrl, title, productDetails, titleWidth = "90%", 
   // console.log(productDetails);
 
   return (
-    <div className=" w-[15rem] md:w-[20rem] h-full hover: cursor-pointer flex flex-col">
+    <div className=" w-[13rem] md:w-[20rem] h-full hover: cursor-pointer flex flex-col">
       <div className="flex flex-col items-center" onClick={() => {
         navigate(`/product?product=${id}`);
         setFlag(true);
       }}>
-        <div className="h-[16.5rem] md:w-[61%] rounded-[100px] relative overflow-hidden object-contain chocolate">
-          {/* <div className="absolute border z-10 -top-1 left-[50%] translate-x-[-50%] bg-white p-[0.3rem] rounded-[100px] font-[600] shadow-chocolateShadow">
-            chocolate
-          </div> */}
+        <div className="h-[16.5rem] w-[90%] md:w-[61%] rounded-[100px] relative overflow-hidden object-contain chocolate">
           <img
             className="w-[120%] h-full object-cover"
             src={imageUrl}
