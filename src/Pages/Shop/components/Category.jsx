@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import Hero2 from "./Hero2";
 import Empty from "../../../Components/Empty";
+import { toast } from "react-hot-toast";
 
 const Category = () => {
 
@@ -35,15 +36,21 @@ const Category = () => {
       setData(res.data);
       setLoader(false);
     }).catch(() => {
+      toast.error("Server error");
       setLoader(false);
-      alert("Server error");
     })
   }
 
   useEffect(() => {
     if(!queryParams.get("category") && !queryParams.get("category")?.split(",") && !queryParams.get("page")){
       if(category.length !== 0){
-        navigate(`/shop?category=${category[0]._id}&page=1`);
+        let data = [];
+        category.forEach((item, index) => {
+          data.push(item._id);
+        })
+        navigate(`/shop?category=${data}&page=1`, {
+          replace: true
+        });
       }
     } else {
       setCurrCat(queryParams.get("category")?.split(","));
@@ -192,7 +199,7 @@ const Category = () => {
             })}
           </Box>)}
             {
-              (data.length === 0  && !loader) && <Empty message={"No product in this category"} />
+              (data.length === 0 && !loader) && <Empty message={"No product in this category"} />
             }
         </div>
         <Pagination
