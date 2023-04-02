@@ -12,26 +12,24 @@ const Sub = () => {
   return (
     <div
       id="faq"
-      className="h-screen hidden md:flex justify-center items-center"
+      className="py-32 flex justify-center items-center"
     >
-      <div className="h-[65vh] w-[80%] flex flex-col lg:flex-row rounded-[20px] overflow-hidden">
-        <div className="h-[30%] lg:h-full lg:w-[700px] overflow-hidden">
+      <div className="w-[80%] max-w-[1200px] flex flex-col lg:flex-row rounded-[20px] overflow-hidden">
+        <div className="hidden lg:block overflow-hidden">
           <img
-            className="w-full h-full object-center object-cover"
+            className="w-[100%] h-[100%] object-center object-cover"
             src={subimg}
             alt=""
-            width="100%"
-            height="100%"
           />
         </div>
 
-        <div className="relative h-[100%] flex flex-col lg:flex-row space-y-10 lg:space-y-0 py-5 lg:py-0 overflow-hidden">
-          <img className="absolute h-[160%] z-10" src={require("../../../Assets/Newsletter.jpeg")} />
-          <div className="text-center flex flex-col justify-center space-y-4 text-[#793b18] z-[14]">
+        <div className="relative rounded-[20px] lg:rounded-[0px] border lg:border-0 flex flex-col lg:flex-row space-y-10 lg:space-y-0 pb-32 lg:pb-0 overflow-hidden">
+          <img className="absolute h-[150%] z-10" src={require("../../../Assets/Newsletter.jpeg")} />
+          <div className="text-center pt-[16px] flex flex-col items-center justify-start lg:justify-center space-y-4 text-[#793b18] z-[14]">
             <h2 className="text-[24px] w-full uppercase lg:mt-[-30%]">
               Don't miss anything chocolatey.
             </h2>
-            <p className="text-[16px] px-3">
+            <p className="w-[80%] lg:w-[100%] text-[16px] px-3">
               <b>Sign up and get 10% off your next order!</b> Plus score brownie
               points with your mates by being the first to know when new
               products drop and sales happen 🎉
