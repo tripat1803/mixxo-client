@@ -43,7 +43,7 @@ function Hero2() {
         <div className='w-full overflow-hidden bg-black flex'>
             <div className='min-h-[100vh] w-full absolute caroImg z-10' style={{ backgroundImage: `url(${carUrlarr[caro]})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
             </div>
-            <div className='w-full min-h-[100vh] flex flex-col sm:p-[16px] md:p-[32px] justify-center items-center z-20 bg-[rgb(0,0,0,0.2)]'>
+            <div className='w-full min-h-[88vh] flex flex-col sm:p-[16px] md:p-[32px] justify-center items-center z-20 bg-[rgb(0,0,0,0.2)]'>
                 <div className='md:w-[80%] lg:w-[70%] xl:w-[70%] 2xl:w-[70%] sm:w-[100%] mt-[32px]'>
                     <div className='p-[32px]'>
                         <p className='text-white font-cookie leading-[100%] text-[64px] pb-[16px] cath2'>{categoryName[caro]}</p>

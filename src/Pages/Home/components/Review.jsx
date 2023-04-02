@@ -39,7 +39,7 @@ function ReviewCard() {
 
 const Review = () => {
   return (
-    <div className="bg-gradient-to-b from-[#FE6B0180] from-45% to-[#F79E1B80]">
+    <div className="h-screen/90 bg-gradient-to-b from-[#FE6B0180] from-45% to-[#F79E1B80]">
       <div
         id="review"
         className="flex justify-center py-2 md:py-0 px-[48px] md:px-[128px]"

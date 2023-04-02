@@ -172,7 +172,7 @@ const Category = () => {
         <div className="flex justify-center w-full">
           {loader && <Box sx={{
             width: "100%",
-            height: "200px",
+            height: "430px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center"
