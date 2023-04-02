@@ -1,15 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}"],
-	screens: {
-		'xxs': "350px",
-		'sm': '640px',
-		'md': '768px',
-		'lg': '1024px',
-		'xl': '1280px',
-		'2xl': '1536px',
-	},
 	theme: {
+		screens: {
+			'xxs': "350px",
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px',
+			'xl': '1280px',
+			'2xl': '1536px',
+		},
 		extend: {
 			boxShadow: {
 				cartShadow: " 2px 2px 2px #765447",
