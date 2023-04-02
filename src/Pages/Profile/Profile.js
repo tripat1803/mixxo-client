@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import PageComponent from "../../Components/PageComponent";
 import { UserContext } from "../../Context/AllContext/UserContext";
 import Page from "./components/Page";
 import Error from "../../Components/Error";
 import Loader from "../../Components/Loader";
+import ScreenComponent2 from "../../Components/ScreenComponent2";
 
 const Profile = ({ comp }) => {
 
@@ -26,7 +26,7 @@ const Profile = ({ comp }) => {
   return (
     <>
       {loader && <Loader/>}
-      {!loader && (error ? <Error/> : <PageComponent component={[<Page comp={comp} />]} />)}
+      {!loader && (error ? <Error/> : <ScreenComponent2 background={"rgba(255, 248, 239, 1)"} component1={[<Page comp={comp} />]} />)}
     </>
   );
 };

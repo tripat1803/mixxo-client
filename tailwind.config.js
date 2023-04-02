@@ -23,6 +23,7 @@ module.exports = {
 				cookie: "Cookie",
 				mont: "Montserrat",
 				pacifico: "'Pacifico', cursive",
+				pop: "'Poppins', sans-serif"
 			},
 			colors: {
 				primary: "#8b5f4d",

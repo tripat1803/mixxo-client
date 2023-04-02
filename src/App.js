@@ -64,7 +64,6 @@ function App() {
 	return (
 		<>
 			{(flag1 || flag2 || flag || flag3) && <Loader />}
-			{(!location.pathname.includes("/admin")) && <Header />}
 			{
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -81,7 +80,6 @@ function App() {
 					<Route path="*" element={<Error />} />
 				</Routes>
 			}
-			{(!location.pathname.includes("/admin")) && <Footer />}
 			<Toaster />
 		</>
 	);

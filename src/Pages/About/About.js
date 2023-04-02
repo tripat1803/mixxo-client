@@ -1,6 +1,6 @@
 import { Box, styled, Typography } from '@mui/material';
 import React from 'react';
-import ScreenComponent from '../../Components/ScreenComponent';
+import ScreenComponent2 from '../../Components/ScreenComponent2';
 
 const Heading = styled(Typography)(({theme}) => ({
     padding: "24px 0px 0px 0px",
@@ -16,12 +16,12 @@ const Body = styled(Typography)(({theme}) => ({
 
 function About() {
     return (
-        <ScreenComponent component1={
+        <ScreenComponent2 background="#FFF8EF" component1={
             <Box sx={{
                 minHeight: "100vh",
                 display: "flex",
                 justifyContent: "center",
-                background: "#FFF8EF"
+                paddingY: "32px"
             }}>
                 <Box sx={{
                     width: {md: "60%", lg: "60%", xl: "60%", sm: "70%", xs: "90%"},

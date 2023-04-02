@@ -1,10 +1,10 @@
 import React from 'react';
-import ScreenComponent from '../../Components/ScreenComponent';
 import Category from './components/Category';
+import ScreenComponent2 from '../../Components/ScreenComponent2';
 
 function Shop(){
     return(
-        <ScreenComponent component1={[<Category/>]}/>
+        <ScreenComponent2 component1={[<Category/>]}/>
     )
 }
 

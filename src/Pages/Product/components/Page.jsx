@@ -34,7 +34,7 @@ const Page = ({ data, id, related, setFlag, loader2 }) => {
 
   return (
     <>
-      <div className="bg-gradient-to-b from-[#FAE0BF] to-[#FFF8EF]">
+      <div className="">
         <div className="flex flex-col text-4xl md:text-5xl lg:text-7xl font-black items-center space-y-3 py-14">
           <p className="text-center px-4 md:px-[20%]">
             {" "}

@@ -65,7 +65,7 @@ const Product = () => {
         !loader || !loader2 ? (
           <>
             {!productId && <Error />}
-            {productId && <PageComponent component={[<Page key={1} data={data} id={productId} related={categoryProducts} setFlag={setFlag} loader2={loader2} />]} />}
+            {productId && <PageComponent background={"linear-gradient(180deg, #E4B579 0%, #FFF8EF 23.75%)"} component={[<Page key={1} data={data} id={productId} related={categoryProducts} setFlag={setFlag} loader2={loader2} />]} />}
           </>
         ) : <Loader />
       }
