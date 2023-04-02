@@ -1,20 +1,17 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgComponent = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
-    
-    
-    
     style={{
       shapeRendering: "geometricPrecision",
       textRendering: "geometricPrecision",
       imageRendering: "optimizeQuality",
       fillRule: "evenodd",
       clipRule: "evenodd",
-      width:"297mm",
-      height:"50mm"
+      width: "297mm",
+      height: "50mm",
     }}
     viewBox="0 0 29700 21000"
   >
@@ -30,6 +27,6 @@ const SvgComponent = () => (
       </g>
     </g>
   </svg>
-)
+);
 
-export default SvgComponent
+export default SvgComponent;

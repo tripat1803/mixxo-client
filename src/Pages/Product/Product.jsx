@@ -6,7 +6,6 @@ import PageComponent from "../../Components/PageComponent";
 import Page from "./components/Page";
 
 const Product = () => {
-
   const [data, setData] = useState();
   const [productId, setProductId] = useState("");
   const [categoryProducts, setCategoryProducts] = useState([]);
@@ -23,11 +22,11 @@ const Product = () => {
     if (id) {
       setLoader(true);
       publicApi.get(`/product/get/${id}`).then((res) => {
-        setData(res.data);
-        setLoader(false);
-      }).catch(() => {
-        setLoader(false);
-      })
+          setData(res.data);
+          setLoader(false);
+        }).catch(() => {
+          setLoader(false);
+        });
     }
   }
 
@@ -35,11 +34,11 @@ const Product = () => {
     if (catId) {
       setLoader2(true);
       publicApi.get(`/product/category/${catId}`).then((res) => {
-        setCategoryProducts(res.data);
-        setLoader2(false);
-      }).catch(() => {
-        setLoader2(false);
-      })
+          setCategoryProducts(res.data);
+          setLoader2(false);
+        }).catch(() => {
+          setLoader2(false);
+        });
     }
   }
 
@@ -47,8 +46,8 @@ const Product = () => {
     setProductId(queryParams.get("product"));
     getProduct(queryParams.get("product"));
     getCateoryProducts(queryParams.get("product"));
-  }, [queryParams.get("product")]);
-  
+  }, [queryParams]);
+
   if(flag){
     setProductId(queryParams.get("product"));
     setFlag(false);
@@ -57,18 +56,30 @@ const Product = () => {
   useLayoutEffect(() => {
     getProduct(queryParams.get("product"));
     getCateoryProducts(queryParams.get("product"));
-  }, [productId]);
+  }, [productId, queryParams]);
 
   return (
     <>
-      {
-        !loader || !loader2 ? (
-          <>
-            {!productId && <Error />}
-            {productId && <PageComponent background={"linear-gradient(180deg, #E4B579 0%, #FFF8EF 23.75%)"} component={[<Page key={1} data={data} id={productId} related={categoryProducts} setFlag={setFlag} loader2={loader2} />]} />}
-          </>
-        ) : <Loader />
-      }
+      {!loader || !loader2 ? (
+        <>
+          {!productId && <Error />}
+          {productId && (
+            <PageComponent
+              background={"linear-gradient(180deg, #E4B579 0%, #FFF8EF 23.75%)"}
+            >
+              <Page
+                data={data}
+                id={productId}
+                related={categoryProducts}
+                setFlag={setFlag}
+                loader2={loader2}
+              />
+            </PageComponent>
+          )}
+        </>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

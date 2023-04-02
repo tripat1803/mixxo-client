@@ -137,8 +137,8 @@ export default function HeaderNew() {
 
         {/* Links */}
         <div className=" flex-grow border border-black py-2 px-5 rounded-full flex items-center justify-evenly gap-6 font-bold font-pop">
-          {navLinks.map((val) => {
-            return <Link to={val.link}>{val.name} </Link>;
+          {navLinks.map((val,key) => {
+            return <Link key={`link_${key}`} to={val.link}>{val.name} </Link>;
           })}
           <div className="border border-[#D6AB81] rounded-full w-[max-content] p-2">
             <svg
