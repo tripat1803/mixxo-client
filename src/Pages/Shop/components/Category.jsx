@@ -47,10 +47,10 @@ const Category = () => {
         let data = [];
         category.forEach((item, index) => {
           data.push(item._id);
+        })
+        navigate(`/shop?category=${data}&page=1`, {
+          replace: true
         });
-        fetchCategoryProducts(data, 1);
-        setCurrCat(data);
-        setCurrPg(1);
       }
     } else {
       setCurrCat(queryParams.get("category")?.split(","));
@@ -59,6 +59,10 @@ const Category = () => {
       fetchCategoryProducts(queryParams.get("category").split(","), Number(queryParams.get("page")));
     }
   }, [queryParams.get("page"), queryParams.get("category"), category]);
+
+  // useEffect(() => {
+  //   setFlag(true);
+  // }, []);
 
   if(flag){
     setTotal(0);
