@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Context/AllContext/UserContext";
 import "../../../styles/index.css";
+import { toast } from "react-hot-toast";
 
 const Popup = (props) => {
   let user = useContext(UserContext);
@@ -23,6 +24,7 @@ const Popup = (props) => {
           }
         })
         .catch((err) => {
+          toast.error(err.message);
           user.setLoader(false);
         });
       props.data();
