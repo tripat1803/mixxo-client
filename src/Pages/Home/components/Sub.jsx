@@ -12,7 +12,7 @@ const Sub = () => {
   return (
     <div
       id="faq"
-      className="py-32 flex justify-center items-center"
+      className="py-32 hidden sm:flex justify-center items-center"
     >
       <div className="w-[80%] max-w-[1200px] flex flex-col lg:flex-row rounded-[20px] overflow-hidden">
         <div className="hidden lg:block overflow-hidden">

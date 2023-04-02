@@ -7,11 +7,11 @@ const review = [];
 
 function ReviewCard() {
 
-  const imageArr = [require("../../../Assets/Review/Image1.jpeg"), require("../../../Assets/Review/Image2.jpeg"), require("../../../Assets/Review/Image3.jpeg")]
+  const imageArr = [require("../../../Assets/Review/Image1.jpeg"), require("../../../Assets/Review/Image2.jpeg"), require("../../../Assets/Review/Image3.jpeg"), require("../../../Assets/Review/Image4.png"), require("../../../Assets/Review/Image5.png"), require("../../../Assets/Review/Image6.png"), require("../../../Assets/Review/Image7.png"),]
 
   return (
     <div className="relative hover:cursor-pointer ">
-      <img className="absolute w-[100%] h-[100%]" src={imageArr[Math.floor(Math.random() * 3)]} alt="review-im" />
+      <img className="absolute w-[100%] h-[100%]" src={imageArr[Math.floor(Math.random() * 7)]} alt="review-im" />
       <p className="revOverlay">
         <h1>Review</h1>
         <p>
@@ -25,9 +25,9 @@ function ReviewCard() {
 
 const Review = () => {
   return (
-    <div className="bg-[#febb8a]">
-      <div id="review" className="flex justify-center py-5 md:py-0 px-[48px] md:px-[128px]">
-        <div className="lg:w-[100%] xl:w-[50%] 2xl:w-[50%] md:w-[100%] sm:w-[100%] lg:p-[5%] xl:p-[5%_5%_5%_0px] 2xl:p-[5%_5%_5%_0px] md:p-[5%] sm:p-[5%] flex flex-col-reverse md:flex-col items-center justify-center">
+    <div className="bg-gradient-to-b from-[#FE6B0180] to-[#F79E1B80]">
+      <div id="review" className="flex justify-center py-2 md:py-0 px-[48px] md:px-[128px]">
+        <div className="lg:w-[100%] xl:w-[50%] 2xl:w-[50%] md:w-[100%] sm:w-[100%] lg:p-[5%] xl:p-[0%_5%_0%_0px] 2xl:p-[0%_5%_0%_0px] md:p-[5%] sm:p-[5%] flex flex-col-reverse md:flex-col items-center justify-center">
           <div className="h-[max-content] xl:hidden py-[32px] break-words text-[38px] text-[#664A3F] text-center font-pacifico flex flex-col space-y-3">
             <p className="landing-[100%] text-2xl sm:text-2xl md:text-3xl lg:text-4xl">Browse Our Bestsellers</p>
           </div>
@@ -71,14 +71,12 @@ const Review = () => {
           </div>
         </div>
         <div className="hidden relative xl:flex flex-col items-start w-[50%]">
-        <div className="h-[max-content] pt-[40px] break-words text-[38px] text-[#664A3F] text-start font-pacifico flex flex-col space-y-3">
-            <p className="landing-[100%]">Browse Our Bestsellers</p>
-          </div>
-          <div className="flex items-center justify-center w-full h-[75%] flex-1">
+        
+          <div className="flex items-end justify-center w-full h-[50%] flex-1">
           <img
-            className="h-full object-cover"
+            className="h-[80%] object-cover"
             alt="rev"
-            src={require("../../../Assets/Lady.png")}
+            src={require("../../../Assets/lady.png")}
           /></div>
         </div>
       </div>
