@@ -192,7 +192,7 @@ const Category = () => {
             })}
           </Box>)}
             {
-              (data.length === 0) && <Empty message={"No product in this category"} />
+              (data.length === 0  && !loader) && <Empty message={"No product in this category"} />
             }
         </div>
         <Pagination
