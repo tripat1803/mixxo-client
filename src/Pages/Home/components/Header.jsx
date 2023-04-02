@@ -18,7 +18,7 @@ import Signup from "./Signup";
 import MenuIcon from "@mui/icons-material/Menu";
 import { CartContext } from "../../../Context/AllContext/CartContext";
 import CloseIcon from "@mui/icons-material/Close";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Context/AllContext/UserContext";
 import { NavHashLink } from "react-router-hash-link";
 import Fade from "@mui/material/Fade";
@@ -189,28 +189,22 @@ const Header = () => {
             }
       }
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      <div className="flex items-center">
         {/* <SvgLogo /> */}
         {/* <Typography>MIXXO</Typography> */}
 
         {/* Logo */}
-        <Image
-          onClick={() => {
-            navigate("/");
-          }}
-          src={Logo}
-          alt="logo"
-          sx={{
-            width: "110px",
-            position: "relative",
-          }}
-        />
-      </Box>
+        <Link to="/">
+          <img
+            className="w-28 relative"
+            onClick={() => {
+              navigate("/");
+            }}
+            src={Logo}
+            alt="logo"
+          />
+        </Link>
+      </div>
 
       {/* Nav Links */}
       <Box
@@ -235,7 +229,7 @@ const Header = () => {
           alignItems: "center",
         }}
       >
-        {navLinks.map((item) => {
+        {navLinks.map((item, key) => {
           return (
             <>
               {item.name !== "REVIEWS" ? (
@@ -243,7 +237,7 @@ const Header = () => {
                   onClick={() => {
                     navigate(item.link);
                   }}
-                  key={item.name}
+                  key={`${item.name}${key}`}
                   className="Navbtn"
                   style={{
                     color: txtColor,
@@ -434,11 +428,12 @@ const Header = () => {
         >
           HOME
         </Typography>
-        {navLinks.map((item) => {
+        {navLinks.map((item, key) => {
           return (
             <>
               {item.name !== "REVIEWS" ? (
                 <Typography
+                  key={`nav_${key}`}
                   onClick={() => {
                     navigate(item.link);
                     setDrawer("-150%");
@@ -454,6 +449,7 @@ const Header = () => {
                 </Typography>
               ) : (
                 <NavHashLink
+                  key={`navjhh_${key}`}
                   onClick={() => {
                     setDrawer("-150%");
                   }}

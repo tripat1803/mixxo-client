@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 // import Page from './Product';
 // import Products from "./Products";
