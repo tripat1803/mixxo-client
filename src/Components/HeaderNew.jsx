@@ -1,14 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Fade from "@mui/material/Fade";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Avatar,
+  Box,
   IconButton,
+  Menu,
+  MenuItem,
+  Typography,
 } from "@mui/material";
 import { CartContext } from "../Context/AllContext/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/AllContext/UserContext";
 import { CategoryContext } from "../Context/AllContext/CategoryContext";
 import { Link } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
+import Cart from "../Pages/Home/components/ProCart";
+import Popup from "../Pages/Home/components/Popup";
+import Signup from "../Pages/Home/components/Signup";
 
 export default function HeaderNew() {
   let user = useContext(UserContext);
@@ -109,23 +119,28 @@ export default function HeaderNew() {
 
   const navLinks = [
     {
-      name: "SHOP",
+      name: "Shop",
       link: "/shop",
+      img: "shop",
     },
     {
-      name: "REVIEWS",
+      name: "Reviews",
       link: "#review",
+      img: "review",
     },
     {
-      name: "ABOUT US",
+      name: "About Us",
       link: "/about",
+      img: "about",
     },
   ];
   return (
+    // Modals at the end
+
     <div className="lg:px-20 px-10">
       <div className="hidden md:flex items-center justify-evenly">
         {/* Logo */}
-        <div className="flex-1 pt-1">
+        <div className="flex-1 pt-2">
           <Link to="/">
             <img
               className="lg:w-32 w-24"
@@ -136,11 +151,36 @@ export default function HeaderNew() {
         </div>
 
         {/* Links */}
-        <div className=" flex-grow border border-black py-2 px-5 rounded-full flex items-center justify-evenly gap-6 font-bold font-pop">
+        <div className="relative flex-grow border border-black py-2 px-5 rounded-full flex items-center justify-evenly gap-6 font-bold font-pop">
           {navLinks.map((val) => {
-            return <Link to={val.link}>{val.name} </Link>;
+            return (
+              <>
+                {val.name !== "Reviews" ? (
+                  <Link className="Navbtn" to={val.link}>
+                    {val.name}
+                  </Link>
+                ) : (
+                  <NavHashLink
+                    to={
+                      location.pathname && location.search
+                        ? `${location.pathname}${location.search}#review`
+                        : "#review"
+                    }
+                    className="Navbtn"
+                    smooth
+                  >
+                    {val.name}
+                  </NavHashLink>
+                )}
+              </>
+            );
           })}
-          <div className="border border-[#D6AB81] rounded-full w-[max-content] p-2">
+
+          {/* Cart Icon */}
+          <button
+            onClick={togglecart}
+            className="relative border border-[#D6AB81] hover:bg-[#D6AB81] hover:bg-opacity-30 transition-all rounded-full w-[max-content] p-2"
+          >
             <svg
               width="23"
               height="23"
@@ -153,7 +193,12 @@ export default function HeaderNew() {
                 fill="black"
               />
             </svg>
-          </div>
+            {procart && (
+              <div className="absolute -right-28 border border-black top-16">
+                <Cart data={togglecart} />
+              </div>
+            )}
+          </button>
         </div>
 
         {/* User Icon */}
@@ -194,7 +239,7 @@ export default function HeaderNew() {
       </div>
 
       {/* Mobile View */}
-      <div className="md:hidden flex items-center justify-between border border-black px-4 my-3 rounded-full">
+      <div className="md:hidden flex items-center justify-between border border-zinc-700 px-4 py-1 my-3 rounded-full">
         {/* Logo */}
         <div className="flex-1 pt-1">
           <Link to="/">
@@ -209,24 +254,185 @@ export default function HeaderNew() {
         {/* Other logos */}
         <div className="flex gap-3 items-center">
           {/* cart */}
-          <button className="border border-black rounded-full p-1">
+          <Link
+            to="/cart"
+            className=" bg-[#D6AB81] bg-opacity-30 rounded-full p-[6px]"
+          >
             <img
-              className="w-5"
-              // src={require("../Assets/shopCart.svg").default}
+              className="w-6"
+              src={require("../Assets/shopCart.svg").default}
               alt=""
             />
-          </button>
+          </Link>
 
           {/* Setting */}
-          <button className="border border-black rounded-full p-1">
+          <button
+            onClick={() => setDrawer("0%")}
+            className=" bg-[#D6AB81] bg-opacity-30 rounded-full p-1"
+          >
             <img
-              className="w-5"
-              // src={require("../Assets/setting.svg").default}
+              className="w-7"
+              src={require("../Assets/setting.svg").default}
               alt=""
             />
           </button>
         </div>
       </div>
+
+      {/* Drawer */}
+      <Box
+        id="drawer"
+        sx={{
+          display: {
+            md: "none",
+            lg: "none",
+            xl: "none",
+            sm: "block",
+            xs: "block",
+          },
+          width: { sm: "80%", xs: "80%" },
+          background: "#FAE0BF",
+          position: "fixed",
+          top: "0%",
+          left: drawer,
+          minHeight: "100vh",
+          zIndex: "25",
+          transition: "0.5s",
+          overflowY: "scroll",
+        }}
+      >
+        <Box
+          sx={{
+            padding: "8px",
+            textAlign: "right",
+          }}
+        >
+          <CloseIcon
+            onClick={() => {
+              setDrawer("-150%");
+            }}
+            fontSize="large"
+          />
+        </Box>
+
+        {/* Links */}
+
+        <div className="flex flex-col font-pop gap-5 font-semibold text-[19px] px-7 ">
+          {/* For home */}
+          <Link
+            to="/"
+            onClick={() => setDrawer("-150%")}
+            className="flex items-center space-x-5"
+          >
+            <img
+              className="w-8"
+              src={require(`../Assets/Drawer/home.svg`).default}
+              alt=""
+            />
+
+            <span> Home </span>
+          </Link>
+
+          {navLinks.map((item) => {
+            return (
+              <>
+                {item.name !== "Reviews" ? (
+                  <Link
+                    to={item.link}
+                    onClick={() => setDrawer("-150%")}
+                    className="flex items-center space-x-5"
+                  >
+                    <img
+                      className="w-8"
+                      src={require(`../Assets/Drawer/${item?.img}.svg`)}
+                      alt=""
+                    />
+
+                    <span>{item.name}</span>
+                  </Link>
+                ) : (
+                  <NavHashLink
+                    onClick={() => {
+                      setDrawer("-150%");
+                    }}
+                    className="flex items-center space-x-5"
+                    to={
+                      location.pathname && location.search
+                        ? `${location.pathname}${location.search}#review`
+                        : "#review"
+                    }
+                  >
+                    <img
+                      className="w-8"
+                      src={require(`../Assets/Drawer/${item?.img}.svg`)}
+                      alt=""
+                    />
+
+                    <span>{item.name}</span>
+                  </NavHashLink>
+                )}
+              </>
+            );
+          })}
+        </div>
+      </Box>
+      {drawer === "0%" && (
+        <Box
+          onClick={() => {
+            setDrawer("-150%");
+          }}
+          sx={{
+            display: {
+              md: "none",
+              lg: "none",
+              xl: "none",
+              sm: "block",
+              xs: "block",
+            },
+            width: "100%",
+            background: "rgb(0,0,0,0.4)",
+            position: "fixed",
+            top: "0%",
+            left: "0%",
+            height: "100vh",
+            zIndex: "24",
+            transition: "0.5s",
+          }}
+        ></Box>
+      )}
+
+      <Menu
+        id="fade-menu"
+        MenuListProps={{
+          "aria-labelledby": "fade-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        <MenuItem onClick={handleClose}>My Account</MenuItem>
+        <MenuItem onClick={handleClose}>Orders</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+      <Menu
+        id="fade-menu2"
+        MenuListProps={{
+          "aria-labelledby": "fade-button2",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        <MenuItem onClick={handleClose}>My Account</MenuItem>
+        <MenuItem onClick={handleClose}>Orders</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+
+      {/* Modals */}
+      {model && <Popup data={toggleModel} name={toggleSign} />}
+      {signup && <Signup data={toggleSign} name={toggleModel} />}
     </div>
   );
 }

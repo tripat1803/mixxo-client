@@ -32,24 +32,30 @@ function CartCard({ item, quantity }) {
           if (!loader) {
             if (item) {
               setLoader(true);
-              cart.updateCart(item.product_id._id, item.details._id, "REMOVE").then(() => {
-                cart.fetchCart().then((res) => {
-                  cart.setCart(res.data.products);
-                  setLoader(false);
-                }).catch((err) => {
+              cart
+                .updateCart(item.product_id._id, item.details._id, "REMOVE")
+                .then(() => {
+                  cart
+                    .fetchCart()
+                    .then((res) => {
+                      cart.setCart(res.data.products);
+                      setLoader(false);
+                    })
+                    .catch((err) => {
+                      if (err.request.status) {
+                        return toast.error(err.response.data.message);
+                      } else {
+                        toast.error("Something went wrong");
+                      }
+                    });
+                })
+                .catch((err) => {
                   if (err.request.status) {
                     return toast.error(err.response.data.message);
-                  }else{
-                      toast.error("Something went wrong");
+                  } else {
+                    toast.error("Something went wrong");
                   }
                 });
-              }).catch((err) => {
-                if (err.request.status) {
-                  return toast.error(err.response.data.message);
-                }else{
-                    toast.error("Something went wrong");
-                }
-              });
             }
           }
         }}
@@ -83,52 +89,65 @@ function CartCard({ item, quantity }) {
           onClick={() => {
             if (count > 1) {
               setLoader(true);
-              cart.updateCart(item.product_id._id, item.details._id, "DECREMENT").then(() => {
-                cart.fetchCart().then((res) => {
-                  cart.setCart(res.data.products);
-                  setLoader(false);
-                }).catch((err) => {
+              cart
+                .updateCart(item.product_id._id, item.details._id, "DECREMENT")
+                .then(() => {
+                  cart
+                    .fetchCart()
+                    .then((res) => {
+                      cart.setCart(res.data.products);
+                      setLoader(false);
+                    })
+                    .catch((err) => {
+                      if (err.request.status) {
+                        return toast.error(err.response.data.message);
+                      } else {
+                        toast.error("Something went wrong");
+                      }
+                    });
+                })
+                .catch((err) => {
                   if (err.request.status) {
                     return toast.error(err.response.data.message);
-                  }else{
-                      toast.error("Something went wrong");
+                  } else {
+                    toast.error("Something went wrong");
                   }
                 });
-              }).catch((err) => {
-                if (err.request.status) {
-                  return toast.error(err.response.data.message);
-                }else{
-                    toast.error("Something went wrong");
-                }
-              });
             }
             if (count === 1) {
               if (item) {
                 setLoader(true);
-                cart.updateCart(item.product_id._id, item.details._id, "REMOVE").then(() => {
-                  cart.fetchCart().then((res) => {
-                    cart.setCart(res.data.products);
-                    setLoader(false);
-                  }).catch((err) => {
+                cart
+                  .updateCart(item.product_id._id, item.details._id, "REMOVE")
+                  .then(() => {
+                    cart
+                      .fetchCart()
+                      .then((res) => {
+                        cart.setCart(res.data.products);
+                        setLoader(false);
+                      })
+                      .catch((err) => {
+                        if (err.request.status) {
+                          return toast.error(err.response.data.message);
+                        } else {
+                          toast.error("Something went wrong");
+                        }
+                      })
+                      .catch((err) => {
+                        if (err.request.status) {
+                          return toast.error(err.response.data.message);
+                        } else {
+                          toast.error("Something went wrong");
+                        }
+                      });
+                  })
+                  .catch((err) => {
                     if (err.request.status) {
                       return toast.error(err.response.data.message);
-                    }else{
-                        toast.error("Something went wrong");
-                    }
-                  }).catch((err) => {
-                    if (err.request.status) {
-                      return toast.error(err.response.data.message);
-                    }else{
-                        toast.error("Something went wrong");
+                    } else {
+                      toast.error("Something went wrong");
                     }
                   });
-                }).catch((err) => {
-                  if (err.request.status) {
-                    return toast.error(err.response.data.message);
-                  }else{
-                      toast.error("Something went wrong");
-                  }
-                });
               }
             }
           }}
@@ -148,24 +167,30 @@ function CartCard({ item, quantity }) {
           disabled={loader}
           onClick={() => {
             setLoader(true);
-            cart.updateCart(item.product_id._id, item.details._id, "INCREMENT").then(() => {
-              cart.fetchCart().then((res) => {
-                cart.setCart(res.data.products);
-                setLoader(false);
-              }).catch((err) => {
+            cart
+              .updateCart(item.product_id._id, item.details._id, "INCREMENT")
+              .then(() => {
+                cart
+                  .fetchCart()
+                  .then((res) => {
+                    cart.setCart(res.data.products);
+                    setLoader(false);
+                  })
+                  .catch((err) => {
+                    if (err.request.status) {
+                      return toast.error(err.response.data.message);
+                    } else {
+                      toast.error("Something went wrong");
+                    }
+                  });
+              })
+              .catch((err) => {
                 if (err.request.status) {
                   return toast.error(err.response.data.message);
-                }else{
-                    toast.error("Something went wrong");
+                } else {
+                  toast.error("Something went wrong");
                 }
               });
-            }).catch((err) => {
-              if (err.request.status) {
-                return toast.error(err.response.data.message);
-              }else{
-                  toast.error("Something went wrong");
-              }
-            });
           }}
         >
           <AddIcon />
@@ -192,7 +217,11 @@ function Cart(props) {
 
   return (
     <ClickAwayListener onClickAway={props.data}>
-      <div className={`w-[360px] h-[400px] duration-500 absolute top-[88%] ${mongoUser ? "right-[94px]" : "right-[73px]"} rounded-[15px] bg-[#F5F5F5] p-6 flex flex-col items-center justify-centers gap-[1.4rem]`}>
+      <div
+        className={`w-[360px] h-[400px] z-30 duration-500 absolute top-[88%] ${
+          mongoUser ? "right-[94px]" : "right-[73px]"
+        } rounded-[15px] bg-[#F5F5F5] p-6 flex flex-col items-center justify-centers gap-[1.4rem]`}
+      >
         <div className="w-0 h-0 border border-transparent border-x-[20px] border-b-[30px] border-b-[#F5F5F5] absolute top-[-12%] right-[10px] m-8"></div>
         <div className="w-full flex justify-between gap-[1rem]">
           <span className="flex justify-center items-center gap-[1rem]">
@@ -222,14 +251,17 @@ function Cart(props) {
             <div>Cart is Empty!!</div>
           )}
 
-          <button onClick={() => {
-            if (cartData?.length !== 0) {
-              navigate("/cart");
-              props.data();
-            } else {
-              toast.error("Cart is empty!");
-            }
-          }} className="bg-[#765447] border-none h-8 w-44 mt-[42%] text-xl font-[700] text-[#f6ebe0] rounded-[6px] absolute tracking-wide">
+          <button
+            onClick={() => {
+              if (cartData?.length !== 0) {
+                navigate("/cart");
+                props.data();
+              } else {
+                toast.error("Cart is empty!");
+              }
+            }}
+            className="bg-[#765447] border-none h-8 w-44 mt-[42%] text-xl font-[700] text-[#f6ebe0] rounded-[6px] absolute tracking-wide"
+          >
             Checkout
           </button>
         </div>
