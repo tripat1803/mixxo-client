@@ -18,18 +18,12 @@ function Products({ dataArr }) {
 	return (
 		<Box sx={{
 			height: "100%",
-			padding: "0px 32px 64px 32px",
+			padding: {md: "0px 32px 64px 32px", lg: "0px 32px 64px 32px", xl: "0px 32px 64px 32px", sm: "0px 32px 64px 32px", xs: "0px 8px 64px 8px"},
 			display: "flex",
 			justifyContent: "center"
 		}}>
 			{
-				(total) && ((total.length !== 0) && <Box sx={{
-					width: { md: "100%", lg: "90%", xl: "75%", sm: "100%", xs: "100%" },
-					display: "grid",
-					gridTemplateColumns: { md: "50% 50%", lg: "33% 33% 33%", xl: "33% 33% 33%", sm: "50% 50%", xs: "100%" },
-					placeItems: "center",
-					gap: "64px 0px"
-				}}>
+				(total) && ((total.length !== 0) && <div className="w-[100%] lg:w-[100%] xl:w-[100%] grid place-items-center gap-[64px_0px] grid-cols-1 xs:grid-cols-2 lg:grid-cols-3">
 					{
 						total?.map((item, index) => {
 							return (
@@ -47,7 +41,7 @@ function Products({ dataArr }) {
 							);
 						})
 				}
-				</Box>)
+				</div>)
 			}
 			{
 				(total) && ((total.length === 0) && <Empty message={"No Product To Recommend"} />)
