@@ -3,10 +3,11 @@ import { UserContext } from "../../Context/AllContext/UserContext";
 import Page from "./components/Page";
 import Error from "../../Components/Error";
 import Loader from "../../Components/Loader";
-import ScreenComponent2 from "../../Components/ScreenComponent2";
+import { Route, Routes } from "react-router-dom";
+import Account from "./components/Account";
+import Order from "./components/Order";
 
 const Profile = ({ comp }) => {
-
   let user = useContext(UserContext);
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(false);
@@ -25,8 +26,18 @@ const Profile = ({ comp }) => {
 
   return (
     <>
-      {loader && <Loader/>}
-      {!loader && (error ? <Error/> : <ScreenComponent2 background={"rgba(255, 248, 239, 1)"} component1={[<Page comp={comp} />]} />)}
+      {loader && <Loader />}
+      {!loader &&
+        (error ? (
+          <Error />
+        ) : (
+          <Page>
+            <Routes>
+              <Route path="/account" element={<Account />} />
+              <Route path="/order" element={<Order />} />
+            </Routes>
+          </Page>
+        ))}
     </>
   );
 };

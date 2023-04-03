@@ -8,7 +8,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Typography,
 } from "@mui/material";
 import { CartContext } from "../Context/AllContext/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";

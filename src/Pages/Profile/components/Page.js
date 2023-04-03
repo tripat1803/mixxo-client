@@ -3,13 +3,13 @@ import WineBarIcon from "@mui/icons-material/WineBar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link, useNavigate } from "react-router-dom";
 
-const Page = ({ comp }) => {
+const Page = ({ children }) => {
+  let navigate = useNavigate();
 
-	let navigate = useNavigate();
-
-	return (
-		<div className="bg-[#fff8ef] pt-[5rem] flex justify-center items-center flex-col gap-[5%]">
-			{/* <div className="w-[80%] max-w-[1200px] py-8 bg-[#fae0bf] rounded-[100px] grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 grid-cols-1">
+  return (
+    <main>
+      <div className="bg-[#fff8ef] pt-[5rem] flex justify-center items-center flex-col gap-[5%]">
+        {/* <div className="w-[80%] max-w-[1200px] py-8 bg-[#fae0bf] rounded-[100px] grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 grid-cols-1">
 				<div className="2xl:basis-1/2 xl:basis-1/2 lg:basis-1/2 md:basis-full sm:basis-full xs:basis-full flex justify-center items-center">
 					<Avatar
 						sx={{
@@ -40,56 +40,63 @@ const Page = ({ comp }) => {
 				</div>
 			</div> */}
 
-			<div className=" max-w-[1200px] 2xl:w-full xl:w-full lg:w-full md:w-full sm:w-full w-fit pb-16 flex flex-row items-center">
-				<button className="text-[#6a2b00] 2xl:w-full xl:w-full lg:w-full md:w-full sm:w-full xs:w-full font-[500] text-xl text-center border-r-2 border-black 2xl:px-10 xl:px-10 lg:px-10 md:px-10 sm:px-5 px-3 py-4">
-					<Link to="/profile/account" className="2xl:block xl:block lg:block md:hidden sm:hidden hidden">
-						Your Account
-					</Link>
-					<div className="flex justify-center">
-						<AccountCircleIcon
-							onClick={() => {
-								navigate("/profile/account");
-							}}
-							sx={{
-								display: {
-									xl: "none",
-									lg: "none",
-									md: "block",
-									sm: "block",
-									xs: "block",
-								},
-							}}
-						/>
-					</div>
-				</button>
-				<button className="text-[#6a2b00] 2xl:w-full xl:w-full lg:w-full md:w-full sm:w-full xs:w-full font-[500] text-xl text-center 2xl:px-10 xl:px-10 lg:px-10 md:px-10 sm:px-5 px-3 py-4">
-					<Link to="/profile/order" className="2xl:block xl:block lg:block md:hidden sm:hidden hidden">
-						Your Orders
-					</Link>
-					<div className="flex justify-center">
-						<WineBarIcon
-							onClick={() => {
-								navigate("/profile/order");
-							}}
-							sx={{
-								display: {
-									xl: "none",
-									lg: "none",
-									md: "block",
-									sm: "block",
-									xs: "block",
-								},
-							}}
-						/>
-					</div>
-				</button>
-			</div>
+        <div className=" max-w-[1200px] 2xl:w-full xl:w-full lg:w-full md:w-full sm:w-full w-fit pb-16 flex flex-row items-center">
+          <button className="text-[#6a2b00] 2xl:w-full xl:w-full lg:w-full md:w-full sm:w-full xs:w-full font-[500] text-xl text-center border-r-2 border-black 2xl:px-10 xl:px-10 lg:px-10 md:px-10 sm:px-5 px-3 py-4">
+            <Link
+              to="/profile/account"
+              className="2xl:block xl:block lg:block md:hidden sm:hidden hidden"
+            >
+              Your Account
+            </Link>
+            <div className="flex justify-center">
+              <AccountCircleIcon
+                onClick={() => {
+                  navigate("/profile/account");
+                }}
+                sx={{
+                  display: {
+                    xl: "none",
+                    lg: "none",
+                    md: "block",
+                    sm: "block",
+                    xs: "block",
+                  },
+                }}
+              />
+            </div>
+          </button>
+          <button className="text-[#6a2b00] 2xl:w-full xl:w-full lg:w-full md:w-full sm:w-full xs:w-full font-[500] text-xl text-center 2xl:px-10 xl:px-10 lg:px-10 md:px-10 sm:px-5 px-3 py-4">
+            <Link
+              to="/profile/order"
+              className="2xl:block xl:block lg:block md:hidden sm:hidden hidden"
+            >
+              Your Orders
+            </Link>
+            <div className="flex justify-center">
+              <WineBarIcon
+                onClick={() => {
+                  navigate("/profile/order");
+                }}
+                sx={{
+                  display: {
+                    xl: "none",
+                    lg: "none",
+                    md: "block",
+                    sm: "block",
+                    xs: "block",
+                  },
+                }}
+              />
+            </div>
+          </button>
+        </div>
 
-			<div className="h-[50%] w-[90%] 2xl:w-[80%] xl:w-[80%] lg:w-[80%] md:w-[80%] sm:w-[90%] max-w-[1200px] flex justify-center flex-col items-center pb-20">
-				{comp}
-			</div>
-		</div>
-	);
+        <div className="h-[50%] w-[90%] 2xl:w-[80%] xl:w-[80%] lg:w-[80%] md:w-[80%] sm:w-[90%] max-w-[1200px] flex justify-center flex-col items-center pb-20">
+          {children}
+        </div>
+      </div>
+    </main>
+  );
 };
 
 export default Page;
