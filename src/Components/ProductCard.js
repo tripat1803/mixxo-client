@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../Context/AllContext/CartContext";
 import { toast } from "react-hot-toast";
@@ -11,7 +11,7 @@ function ProductCard({
   title,
   productDetails,
   titleWidth = "90%",
-  setFlag = (param) => {},
+  setFlag = (param) => { },
 }) {
   let user = useContext(UserContext);
   let cart = useContext(CartContext);
@@ -37,7 +37,7 @@ function ProductCard({
             .updateCart(id, productDetails.productDetailsId._id, "PUSH")
             .then(() => {
               notify();
-              cart.setFlag(true);
+              cart.setFlag2(true);
               setLoader(false);
             })
             .catch((err) => {
@@ -98,7 +98,11 @@ function ProductCard({
           onClick={handle}
           className="w-[60%] p-2 bg-white text-[#8B5F4D] border-[2px] border-black rounded-[100px] font-bold text-[0.8rem] hover:bg-[#8B5F4D] hover:text-white hover:border-[#8B5F4D] transition-all duration-500"
         >
-          Add To Cart
+          {loader ? (
+            <div className="lds-dual-ring2"></div>
+          ) : (
+            "Add to cart"
+          )}
         </button>
       </div>
     </div>

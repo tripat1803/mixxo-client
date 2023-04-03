@@ -43,10 +43,10 @@ function Details({ item, id }) {
         <h1 className="text-3xl font-black"> {data?.name} </h1>
         <div className="flex flex-col space-y-4 py-7 my-2 mb-5 border-y-2 border-black">
           <div className="flex flex-col sm:flex-row gap-3 font-semibold">
-          <FormControl sx={{
+            <FormControl sx={{
               border: "1px solid black",
               background: "white",
-              width: {md: "208px", lg: "208px", xl: "208px", sm: "100%", xs: "100%"}
+              width: { md: "208px", lg: "208px", xl: "208px", sm: "100%", xs: "100%" }
             }} focused={false} className="rounded-full">
               <InputLabel sx={{
                 fontWeight: "bold",
@@ -83,7 +83,7 @@ function Details({ item, id }) {
                     setLoader(true);
                     cart.updateCart(productId, weight, "PUSH").then(() => {
                       notify();
-                      cart.setFlag(true);
+                      cart.setFlag2(true);
                       setLoader(false);
                     }).catch((err) => {
                       toast.error(err.response.data.message);
@@ -95,7 +95,11 @@ function Details({ item, id }) {
                 usernotfound();
               }
             }} className="w-[100%] sm:w-52 border border-black text-white py-4 bg-primary rounded-full">
-              Add to Cart
+              {loader ? (
+                <div className="lds-dual-ring"></div>
+              ) : (
+                "Add to cart"
+              )}
             </button>
           </div>
           <div>

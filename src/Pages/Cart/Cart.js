@@ -235,7 +235,7 @@ function Cart() {
                     <th className="text-left w-full text-xl">Shipping:</th>
                     <td className="text-left w-full ">₹150</td>
                   </tr>
-                  <tr className="p-3 block border-black border-2 border-y-0">
+                  <tr className="p-3 block border-black border border-x-0">
                     <th className="text-left w-full text-xl">Total:</th>
                     <td className="text-left w-full ">
                       ₹{price + shippingPrice + taxPrice}
@@ -259,12 +259,13 @@ function Cart() {
                     bgcolor: "#8B5F4D",
                     borderRadius: "100px",
                     border: "2px solid #8B5F4D",
-                    fontSize: "1.1rem",
+                    fontSize: "13px",
                     fontWeight: "bold",
                     transition: "all 0.5s",
                     textTransform: "none",
                     fontFamily: "Montserrat",
                     color: "white",
+                    padding: "8px",
                     "&:hover": { bgcolor: "white", color: "#8B5F4D" },
                   }}
                   variant="contained"

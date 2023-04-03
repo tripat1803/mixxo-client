@@ -8,9 +8,11 @@ function AllState({ children }) {
   return (
     <UserState>
       <CartState>
-        <ProductState>
-          <CategoryState>{children}</CategoryState>
-        </ProductState>
+        <CategoryState>
+          <ProductState>
+            {children}
+          </ProductState>
+        </CategoryState>
       </CartState>
     </UserState>
   );

@@ -11,8 +11,9 @@ function ProductState({ children }) {
 
   async function fetchProducts() {
     setLoader(true);
+
     publicApi
-      .get("/recommend/")
+      .get("/product/group")
       .then((res) => {
         // console.log(res);
         if(res.data){
