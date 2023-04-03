@@ -46,7 +46,7 @@ const Product = () => {
     setProductId(queryParams.get("product"));
     getProduct(queryParams.get("product"));
     getCateoryProducts(queryParams.get("product"));
-  }, [queryParams]);
+  }, [queryParams.get("product")]);
 
   if(flag){
     setProductId(queryParams.get("product"));
@@ -56,7 +56,7 @@ const Product = () => {
   useLayoutEffect(() => {
     getProduct(queryParams.get("product"));
     getCateoryProducts(queryParams.get("product"));
-  }, [productId, queryParams]);
+  }, [productId]);
 
   return (
     <>
