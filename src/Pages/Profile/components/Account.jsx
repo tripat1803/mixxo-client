@@ -16,6 +16,7 @@ import { publicApi } from "../../../Api/Api";
 import { getIdToken } from "firebase/auth";
 import Lottie from "lottie-react";
 import AccountPopup from "./Popups/AccountPopup";
+import AccountInfo from "./AccountInfo";
 
 const options = ["Set as default", "Delete"];
 

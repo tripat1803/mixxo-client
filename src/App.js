@@ -11,7 +11,6 @@ import Product from "./Pages/Product/Product";
 import Cart from "./Pages/Cart/Cart";
 import { Toaster } from "react-hot-toast";
 import About from "./Pages/About/About";
-import AdminRoutes from "./Routes/AdminRoutes";
 import Global from "./Components/Global";
 import Category from "./Pages/Shop/components/Category";
 
@@ -39,7 +38,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/profile/*" element={<Profile />} />
             <Route path="/product" element={<Product />} />
-            <Route path="/admin/*" element={<AdminRoutes />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Global>

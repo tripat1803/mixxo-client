@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import Footer from "../Pages/Home/components/Footer";
-import Header from "../Pages/Home/components/Header";
-import Review from "../Pages/Home/components/Review";
+import Footer from "./Footer";
+import Header from "./Header";
+import Review from "./Review";
 import Sub from "../Pages/Home/components/Sub";
 import HeaderNew from "./HeaderNew";
 
@@ -22,7 +22,14 @@ export default function Global({ children }) {
         background,
       }}
     >
-      {route === "/" ? <Header /> : <HeaderNew />}
+      {route === "/" && [<div className="hidden md:block">
+        <Header />
+      </div>,
+      <div className="block md:hidden">
+        <HeaderNew />
+      </div>
+      ]}
+      {route !== "/" && <HeaderNew />}
       {children}
       {(route === "/" || route === "/shop") && <Review />}
       {route === "/" && <Sub />}

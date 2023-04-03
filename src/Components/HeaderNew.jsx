@@ -12,7 +12,6 @@ import {
 import { CartContext } from "../Context/AllContext/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/AllContext/UserContext";
-import { CategoryContext } from "../Context/AllContext/CategoryContext";
 import { Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import Cart from "../Pages/Home/components/ProCart";
@@ -22,7 +21,6 @@ import Signup from "../Pages/Home/components/Signup";
 export default function HeaderNew() {
   let user = useContext(UserContext);
   let cart = useContext(CartContext);
-  let category = useContext(CategoryContext);
   let navigate = useNavigate();
   let location = useLocation();
   const [cartData, setCartData] = useState([]);
@@ -134,9 +132,13 @@ export default function HeaderNew() {
     },
   ];
   return (
-    // Modals at the end
-
-    <div className="lg:px-20 px-10">
+    <div style={location.pathname === "/" ? {
+      position: "fixed",
+      top: "0%",
+      width: "100vw"
+    }: {
+      position: "static"
+    }} className="z-[25] lg:px-20 px-10">
       <div className="hidden md:flex items-center justify-evenly">
         {/* Logo */}
         <div className="flex-1 pt-2">
@@ -159,17 +161,20 @@ export default function HeaderNew() {
                     {val.name}
                   </Link>
                 ) : (
-                  <NavHashLink
-                    to={
-                      location.pathname && location.search
-                        ? `${location.pathname}${location.search}#review`
-                        : "#review"
-                    }
-                    className="Navbtn"
-                    smooth
-                  >
-                    {val.name}
-                  </NavHashLink>
+                  (!location.pathname.includes("/product")) ?
+                    <NavHashLink
+                      to={
+                        location.pathname && location.search
+                          ? `${location.pathname}${location.search}#review`
+                          : "#review"
+                      }
+                      className="Navbtn"
+                      smooth
+                    >
+                      {val.name}
+                    </NavHashLink> : <NavHashLink className="Navbtn" to="/#review">
+                      {val.name}
+                    </NavHashLink>
                 )}
               </>
             );
@@ -350,25 +355,37 @@ export default function HeaderNew() {
                     <span>{item.name}</span>
                   </Link>
                 ) : (
-                  <NavHashLink
-                    onClick={() => {
-                      setDrawer("-150%");
-                    }}
-                    className="flex items-center space-x-5"
-                    to={
-                      location.pathname && location.search
-                        ? `${location.pathname}${location.search}#review`
-                        : "#review"
-                    }
-                  >
-                    <img
-                      className="w-8"
-                      src={require(`../Assets/Drawer/${item?.img}.svg`)}
-                      alt=""
-                    />
+                  (!location.pathname.includes("/product")) ?
+                    <NavHashLink
+                      onClick={() => {
+                        setDrawer("-150%");
+                      }}
+                      className="flex items-center space-x-5"
+                      to={
+                        location.pathname && location.search
+                          ? `${location.pathname}${location.search}#review`
+                          : "#review"
+                      }
+                    >
+                      <img
+                        className="w-8"
+                        src={require(`../Assets/Drawer/${item?.img}.svg`)}
+                        alt=""
+                      />
 
-                    <span>{item.name}</span>
-                  </NavHashLink>
+                      <span>{item.name}</span>
+                    </NavHashLink> : <NavHashLink
+                      to="/#review"
+                      onClick={() => setDrawer("-150%")}
+                      className="flex items-center space-x-5"
+                    >
+                      <img
+                        className="w-8"
+                        src={require(`../Assets/Drawer/${item?.img}.svg`)}
+                        alt=""
+                      />
+                      <span>{item.name}</span>
+                    </NavHashLink>
                 )}
               </>
             );

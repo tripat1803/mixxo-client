@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Popup from "./Popup";
-import Cart from "./ProCart";
+import Popup from "../Pages/Home/components/Popup";
+import Cart from "../Pages/Home/components/ProCart";
 import {
   Avatar,
   Badge,
@@ -11,59 +11,38 @@ import {
   Menu,
   MenuItem,
   styled,
-  Typography,
 } from "@mui/material";
-import Logo from "../../../Assets/logo.png";
-import Signup from "./Signup";
+import Logo from "../Assets/logo.png";
+import Signup from "../Pages/Home/components/Signup";
 import MenuIcon from "@mui/icons-material/Menu";
-import { CartContext } from "../../../Context/AllContext/CartContext";
+import { CartContext } from "../Context/AllContext/CartContext";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { UserContext } from "../../../Context/AllContext/UserContext";
+import { UserContext } from "../Context/AllContext/UserContext";
 import { NavHashLink } from "react-router-hash-link";
 import Fade from "@mui/material/Fade";
-import { CategoryContext } from "../../../Context/AllContext/CategoryContext";
-
-const Container = styled(Box)(({ theme }) => ({
-  [theme.breakpoints.up("sm")]: {
-    padding: "0px 52px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    padding: "0px 16px",
-  },
-  display: "flex",
-  justifyContent: "space-between",
-  zIndex: "25",
-  top: "0%",
-  transition: "all 0.5s",
-  width: "100vw",
-}));
-
-const Image = styled("img")(() => ({
-  "&:hover": {
-    cursor: "pointer",
-  },
-}));
 
 const navLinks = [
   {
-    name: "SHOP",
+    name: "Shop",
     link: "/shop",
+    img: "shop",
   },
   {
-    name: "REVIEWS",
-    link: "/",
+    name: "Reviews",
+    link: "#review",
+    img: "review",
   },
   {
-    name: "ABOUT",
+    name: "About Us",
     link: "/about",
+    img: "about",
   },
 ];
 
 const Header = () => {
   let user = useContext(UserContext);
   let cart = useContext(CartContext);
-  let category = useContext(CategoryContext);
   let navigate = useNavigate();
   let location = useLocation();
   const [cartData, setCartData] = useState([]);
@@ -174,19 +153,20 @@ const Header = () => {
   }, [user.mongoUser]);
 
   return (
-    <Container
-      sx={
+    <div
+      className="flex justify-between z-[25] top-0 duration-500 w-[100vw] px-[32px] md:px-[52px]"
+      style={
         nav
           ? {
-              transform: "translateY(-150%)",
-              background: background,
-              position,
-            }
+            transform: "translateY(-150%)",
+            background: background,
+            position,
+          }
           : {
-              transform: "translateY(0%)",
-              background: background,
-              position,
-            }
+            transform: "translateY(0%)",
+            background: background,
+            position,
+          }
       }
     >
       <div className="flex items-center">
@@ -207,56 +187,36 @@ const Header = () => {
       </div>
 
       {/* Nav Links */}
-      <Box
-        sx={{
+      <div
+        className="hidden md:flex gap-[16px] sm:gap-[36px]"
+        style={{
           width: "max-content",
-          display: {
-            md: "flex",
-            lg: "flex",
-            xl: "flex",
-            sm: "none",
-            xs: "none",
-          },
-          gap: { md: "36px", lg: "36px", xl: "36px", sm: "36px", xs: "16px" },
           color: "black",
-          // padding: {
-          //   md: "24px",
-          //   lg: "24px",
-          //   xl: "24px",
-          //   sm: "24px",
-          //   xs: "16px",
-          // },
           alignItems: "center",
         }}
       >
-        {navLinks.map((item, key) => {
+        {navLinks.map((val) => {
           return (
             <>
-              {item.name !== "REVIEWS" ? (
-                <div
-                  onClick={() => {
-                    navigate(item.link);
-                  }}
-                  key={`${item.name}${key}`}
-                  className="Navbtn"
-                  style={{
-                    color: txtColor,
-                  }}
-                >
-                  {item.name}
-                </div>
+              {val.name !== "Reviews" ? (
+                <Link className="Navbtn" to={val.link}>
+                  {val.name}
+                </Link>
               ) : (
-                <NavHashLink
-                  to={
-                    location.pathname && location.search
-                      ? `${location.pathname}${location.search}#review`
-                      : "#review"
-                  }
-                  className="Navbtn"
-                  smooth
-                >
-                  {item.name}
-                </NavHashLink>
+                (!location.pathname.includes("/product")) ?
+                  <NavHashLink
+                    to={
+                      location.pathname && location.search
+                        ? `${location.pathname}${location.search}#review`
+                        : "#review"
+                    }
+                    className="Navbtn"
+                    smooth
+                  >
+                    {val.name}
+                  </NavHashLink> : <NavHashLink className="Navbtn" to="/#review">
+                    {val.name}
+                  </NavHashLink>
               )}
             </>
           );
@@ -316,30 +276,11 @@ const Header = () => {
             fontSize="large"
           />
         )}
-      </Box>
+      </div>
 
       {/* Mobile view */}
-      <Box
-        sx={{
-          width: "max-content",
-          display: {
-            md: "none",
-            lg: "none",
-            xl: "none",
-            sm: "flex",
-            xs: "flex",
-          },
-          gap: { md: "48px", lg: "48px", xl: "48px", sm: "48px", xs: "24px" },
-          color: "black",
-          padding: {
-            md: "24px",
-            lg: "24px",
-            xl: "24px",
-            sm: "24px",
-            xs: "8px",
-          },
-          alignItems: "center",
-        }}
+      <div
+        className="flex items-center md:hidden w-[max-content] gap-[24px] sm:gap-[48px] p-[8px] sm:p-[24px]"
       >
         {mongo ? (
           <IconButton
@@ -379,7 +320,7 @@ const Header = () => {
           }}
           fontSize="large"
         />
-      </Box>
+      </div>
       <Box
         id="drawer"
         sx={{
@@ -414,81 +355,88 @@ const Header = () => {
             fontSize="large"
           />
         </Box>
-        <Typography
-          onClick={() => {
-            navigate("/");
-            setDrawer("-150%");
-          }}
-          sx={{
-            textAlign: "center",
-            fontSize: "24px",
-            fontWeight: "600",
-            padding: "16px",
-          }}
+        <div className="flex flex-col font-pop gap-5 font-semibold text-[19px] px-7 ">
+          {/* For home */}
+          <Link
+            to="/"
+            onClick={() => setDrawer("-150%")}
+            className="flex items-center space-x-5"
+          >
+            <img
+              className="w-8"
+              src={require(`../Assets/Drawer/home.svg`).default}
+              alt=""
+            />
+
+            <span> Home </span>
+          </Link>
+
+          {navLinks.map((item) => {
+            return (
+              <>
+                {item.name !== "Reviews" ? (
+                  <Link
+                    to={item.link}
+                    onClick={() => setDrawer("-150%")}
+                    className="flex items-center space-x-5"
+                  >
+                    <img
+                      className="w-8"
+                      src={require(`../Assets/Drawer/${item?.img}.svg`)}
+                      alt=""
+                    />
+
+                    <span>{item.name}</span>
+                  </Link>
+                ) : (
+                  (!location.pathname.includes("/product")) ?
+                    <NavHashLink
+                      onClick={() => {
+                        setDrawer("-150%");
+                      }}
+                      className="flex items-center space-x-5"
+                      to={
+                        location.pathname && location.search
+                          ? `${location.pathname}${location.search}#review`
+                          : "#review"
+                      }
+                    >
+                      <img
+                        className="w-8"
+                        src={require(`../Assets/Drawer/${item?.img}.svg`)}
+                        alt=""
+                      />
+
+                      <span>{item.name}</span>
+                    </NavHashLink> : <NavHashLink
+                      to="/#review"
+                      onClick={() => setDrawer("-150%")}
+                      className="flex items-center space-x-5"
+                    >
+                      <img
+                        className="w-8"
+                        src={require(`../Assets/Drawer/${item?.img}.svg`)}
+                        alt=""
+                      />
+                      <span>{item.name}</span>
+                    </NavHashLink>
+                )}
+              </>
+            );
+          })}
+        </div>
+        <Link
+          to="/cart"
+          onClick={() => setDrawer("-150%")}
+          className="flex items-center px-7 py-5 gap-5 font-pop font-semibold text-[19px]"
         >
-          HOME
-        </Typography>
-        {navLinks.map((item, key) => {
-          return (
-            <>
-              {item.name !== "REVIEWS" ? (
-                <Typography
-                  key={`nav_${key}`}
-                  onClick={() => {
-                    navigate(item.link);
-                    setDrawer("-150%");
-                  }}
-                  sx={{
-                    textAlign: "center",
-                    fontSize: "24px",
-                    fontWeight: "600",
-                    padding: "16px",
-                  }}
-                >
-                  {item.name}
-                </Typography>
-              ) : (
-                <NavHashLink
-                  key={`navjhh_${key}`}
-                  onClick={() => {
-                    setDrawer("-150%");
-                  }}
-                  to={
-                    location.pathname && location.search
-                      ? `${location.pathname}${location.search}#review`
-                      : "#review"
-                  }
-                  style={{
-                    width: "100%",
-                    textAlign: "center",
-                    fontSize: "24px",
-                    fontWeight: "600",
-                    padding: "16px",
-                    display: "block",
-                    textDecoration: "none",
-                  }}
-                  smooth
-                >
-                  {item.name}
-                </NavHashLink>
-              )}
-            </>
-          );
-        })}
-        <Typography
-          onClick={() => {
-            setDrawer("-150%");
-            navigate("/cart");
-          }}
-          sx={{
-            textAlign: "center",
-            fontSize: "24px",
-            fontWeight: "600",
-            padding: "16px",
-          }}
-        >
-          VIEW CART
-        </Typography>
+          <img
+            className="w-8"
+            src={require(`../Assets/shopCart.svg`).default}
+            alt=""
+          />
+          <span>{"Cart"}</span>
+        </Link>
       </Box>
       {drawer === "0%" && (
         <Box
@@ -544,7 +492,7 @@ const Header = () => {
         <MenuItem onClick={handleClose}>Orders</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </Container>
+    </div>
   );
 };
 

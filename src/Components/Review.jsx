@@ -33,7 +33,7 @@ export default function Review() {
             <img
               className="h-full object-cover"
               alt="rev"
-              src={require("../../../Assets/Lady.png")}
+              src={require("../Assets/Lady.png")}
             />
           </div>
         </div>
@@ -44,13 +44,13 @@ export default function Review() {
 
 function ReviewCard({ key = "" }) {
   const imageArr = [
-    require("../../../Assets/Review/Image1.jpeg"),
-    require("../../../Assets/Review/Image2.jpeg"),
-    require("../../../Assets/Review/Image3.jpeg"),
-    require("../../../Assets/Review/Image4.png"),
-    require("../../../Assets/Review/Image5.png"),
-    require("../../../Assets/Review/Image6.png"),
-    require("../../../Assets/Review/Image7.png"),
+    require("../Assets/Review/Image1.jpeg"),
+    require("../Assets/Review/Image2.jpeg"),
+    require("../Assets/Review/Image3.jpeg"),
+    require("../Assets/Review/Image4.png"),
+    require("../Assets/Review/Image5.png"),
+    require("../Assets/Review/Image6.png"),
+    require("../Assets/Review/Image7.png"),
   ];
 
   return (

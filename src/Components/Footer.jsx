@@ -1,6 +1,6 @@
 import React from "react";
 
-import FootImg from "../../../Assets/footimg.jpeg";
+import FootImg from "../Assets/footimg.jpeg";
 
 const Footer = () => {
 	return (
