@@ -67,8 +67,22 @@ const Signup = (props) => {
               navigate("/");
             }
           })
-          .catch((err) => {
-            toast.error(err.message);
+          .catch((error) => {
+            if (error.code === "auth/user-disabled") {
+              toast.error("User has been disabled");
+            } else if (error.code === "auth/invalid-email") {
+              toast.error("Invalid Email");
+            } else if (error.code === "auth/weak-password") {
+              toast.error("Weak Password");
+            } else if (error.code === "auth/email-already-in-use") {
+              toast.error("Email already in use");
+            } else if (error.code === "auth/operation-not-allowed") {
+              toast.error("Operation not allowed");
+            } else if (error.code === "auth/argument-error") {
+              toast.error("Argument error");
+            } else {
+              toast.error(error.message);
+            }
             user.setLoader(false);
           });
         props.data();
