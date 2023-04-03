@@ -18,7 +18,7 @@ import Cart from "../Pages/Home/components/ProCart";
 import Popup from "../Pages/Home/components/Popup";
 import Signup from "../Pages/Home/components/Signup";
 
-export default function HeaderNew() {
+export default function HeaderNew(props) {
   let user = useContext(UserContext);
   let cart = useContext(CartContext);
   let navigate = useNavigate();
@@ -26,14 +26,11 @@ export default function HeaderNew() {
   const [cartData, setCartData] = useState([]);
   const [procart, setcart] = useState(false);
   const [model, setModel] = useState(false);
-  const [nav, setnav] = useState(false);
   const [signup, setsignup] = useState(false);
   const [drawer, setDrawer] = useState("-150%");
   const [checkCart, setCheckCart] = useState(false);
-  const [background, setBackground] = useState("transparent");
   const [txtColor, setTxtColor] = useState("black");
   const [mongo, setMongo] = useState();
-  const [position, setPosition] = useState("fixed");
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -72,29 +69,6 @@ export default function HeaderNew() {
   }, [cart.cart]);
 
   useEffect(() => {
-    if (window.pageYOffset === 0 && location.pathname === "/") {
-      setBackground("transparent");
-    } else {
-      setBackground("white");
-    }
-
-    if (location.pathname !== "/") {
-      setPosition("sticky");
-    } else {
-      setPosition("fixed");
-    }
-  }, [location.pathname]);
-
-  window.onscroll = function () {
-    // var currentScrollPos = window.pageYOffset;
-    if (window.pageYOffset === 0 && location.pathname === "/") {
-      setBackground("transparent");
-    } else {
-      setBackground("white");
-    }
-  };
-
-  useEffect(() => {
     if (model) {
       document.body.classList.add("active-model");
     } else {
@@ -129,16 +103,17 @@ export default function HeaderNew() {
       name: "About Us",
       link: "/about",
       img: "about",
-    },
+    }
   ];
   return (
     <div style={location.pathname === "/" ? {
-      position: "fixed",
       top: "0%",
-      width: "100vw"
+      width: "100vw",
+      background: props.background,
+      position: props.position
     }: {
       position: "static"
-    }} className="z-[25] lg:px-20 px-10">
+    }} className="z-[25] duration-500 lg:px-20 px-10">
       <div className="hidden md:flex items-center justify-evenly">
         {/* Logo */}
         <div className="flex-1 pt-2">

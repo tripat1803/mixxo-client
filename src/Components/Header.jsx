@@ -40,7 +40,7 @@ const navLinks = [
   },
 ];
 
-const Header = () => {
+const Header = (props) => {
   let user = useContext(UserContext);
   let cart = useContext(CartContext);
   let navigate = useNavigate();
@@ -48,14 +48,11 @@ const Header = () => {
   const [cartData, setCartData] = useState([]);
   const [procart, setcart] = useState(false);
   const [model, setModel] = useState(false);
-  const [nav, setnav] = useState(false);
   const [signup, setsignup] = useState(false);
   const [drawer, setDrawer] = useState("-150%");
   const [checkCart, setCheckCart] = useState(false);
-  const [background, setBackground] = useState("transparent");
   const [txtColor, setTxtColor] = useState("black");
   const [mongo, setMongo] = useState();
-  const [position, setPosition] = useState("fixed");
 
   // Menu
   const [anchorEl, setAnchorEl] = useState(null);
@@ -96,43 +93,6 @@ const Header = () => {
   }, [cart.cart]);
 
   useEffect(() => {
-    if (window.pageYOffset === 0 && location.pathname === "/") {
-      setBackground("transparent");
-    } else {
-      setBackground("white");
-    }
-
-    if (location.pathname !== "/") {
-      setPosition("sticky");
-    } else {
-      setPosition("fixed");
-    }
-  }, [location.pathname]);
-
-  // var prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    // var currentScrollPos = window.pageYOffset;
-    if (window.pageYOffset === 0 && location.pathname === "/") {
-      setBackground("transparent");
-    } else {
-      setBackground("white");
-    }
-    // if (prevScrollpos > currentScrollPos) {
-    //   setnav(false);
-    //   if (checkCart) {
-    //     setcart(true);
-    //   }
-    // } else {
-    //   setnav(true);
-    //   if (procart) {
-    //     setCheckCart(true);
-    //   }
-    //   setcart(false);
-    // }
-    // prevScrollpos = currentScrollPos;
-  };
-
-  useEffect(() => {
     if (model) {
       document.body.classList.add("active-model");
     } else {
@@ -155,25 +115,9 @@ const Header = () => {
   return (
     <div
       className="flex justify-between z-[25] top-0 duration-500 w-[100vw] px-[32px] md:px-[52px]"
-      style={
-        nav
-          ? {
-            transform: "translateY(-150%)",
-            background: background,
-            position,
-          }
-          : {
-            transform: "translateY(0%)",
-            background: background,
-            position,
-          }
-      }
+      style = {{background: props.background, position: props.position}}
     >
       <div className="flex items-center">
-        {/* <SvgLogo /> */}
-        {/* <Typography>MIXXO</Typography> */}
-
-        {/* Logo */}
         <Link to="/">
           <img
             className="w-28 relative"
