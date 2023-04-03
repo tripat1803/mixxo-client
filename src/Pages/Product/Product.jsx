@@ -2,7 +2,6 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { publicApi } from "../../Api/Api";
 import Error from "../../Components/Error";
 import Loader from "../../Components/Loader";
-import PageComponent from "../../Components/PageComponent";
 import Page from "./components/Page";
 
 const Product = () => {
@@ -21,10 +20,13 @@ const Product = () => {
     }
     if (id) {
       setLoader(true);
-      publicApi.get(`/product/get/${id}`).then((res) => {
+      publicApi
+        .get(`/product/get/${id}`)
+        .then((res) => {
           setData(res.data);
           setLoader(false);
-        }).catch(() => {
+        })
+        .catch(() => {
           setLoader(false);
         });
     }
@@ -33,10 +35,13 @@ const Product = () => {
   async function getCateoryProducts(catId) {
     if (catId) {
       setLoader2(true);
-      publicApi.get(`/product/category/${catId}`).then((res) => {
+      publicApi
+        .get(`/product/category/${catId}`)
+        .then((res) => {
           setCategoryProducts(res.data);
           setLoader2(false);
-        }).catch(() => {
+        })
+        .catch(() => {
           setLoader2(false);
         });
     }
@@ -48,7 +53,7 @@ const Product = () => {
     getCateoryProducts(queryParams.get("product"));
   }, [queryParams.get("product")]);
 
-  if(flag){
+  if (flag) {
     setProductId(queryParams.get("product"));
     setFlag(false);
   }
@@ -64,17 +69,13 @@ const Product = () => {
         <>
           {!productId && <Error />}
           {productId && (
-            <PageComponent
-              background={"linear-gradient(180deg, #E4B579 0%, #FFF8EF 23.75%)"}
-            >
-              <Page
-                data={data}
-                id={productId}
-                related={categoryProducts}
-                setFlag={setFlag}
-                loader2={loader2}
-              />
-            </PageComponent>
+            <Page
+              data={data}
+              id={productId}
+              related={categoryProducts}
+              setFlag={setFlag}
+              loader2={loader2}
+            />
           )}
         </>
       ) : (
