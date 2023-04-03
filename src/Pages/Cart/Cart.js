@@ -102,8 +102,8 @@ function Cart() {
   }, [cartData]);
 
   return (
-    <PageComponent>
-      <div className="flex justify-center bg-[#FFF8EF]">
+    <PageComponent background="#FFF8EF">
+      <div className="flex justify-center">
         {firebaseUser ? (
           <Box
             sx={{
@@ -237,7 +237,7 @@ function Cart() {
                       <th className="text-left w-full text-xl">Shipping:</th>
                       <td className="text-left w-full ">₹150</td>
                     </tr>
-                    <tr className="p-3 block border-black border-2 border-y-0">
+                    <tr className="p-3 block border-black border border-x-0">
                       <th className="text-left w-full text-xl">Total:</th>
                       <td className="text-left w-full ">
                         ₹{price + shippingPrice + taxPrice}

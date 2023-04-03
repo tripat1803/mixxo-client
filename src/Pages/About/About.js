@@ -1,6 +1,7 @@
 import { Box, styled, Typography } from "@mui/material";
 import React from "react";
 import ScreenComponent2 from "../../Components/ScreenComponent2";
+import Review from "../Home/components/Review";
 
 const Heading = styled(Typography)(({ theme }) => ({
   padding: "24px 0px 0px 0px",
@@ -18,7 +19,7 @@ function About() {
   return (
     <ScreenComponent2
       background="#FFF8EF"
-      component1={
+      component1={[
         <Box
           sx={{
             minHeight: "100vh",
@@ -127,8 +128,9 @@ function About() {
               </Body>
             </Box>
           </Box>
-        </Box>
-      }
+        </Box>,
+        <Review/>
+      ]}
     />
   );
 }
