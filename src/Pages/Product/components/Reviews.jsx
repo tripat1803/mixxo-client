@@ -124,7 +124,6 @@ function Reviews({ productId, total }) {
             }).then((res) => {
                 if (res.data) {
                     setReviews(res.data.details);
-                    console.log(res.data.count);
                     setPaginate((prevdata) => ({ ...prevdata, total: res.data.count }));
                 }
                 setLoader2(false);
