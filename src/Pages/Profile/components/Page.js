@@ -14,8 +14,7 @@ const Page = ({ children }) => {
     if (user.mongoUser) {
       setDetails(user.mongoUser);
     }
-  }, [user.mongoUser])
-
+  }, [user.mongoUser]);
   return (
     <main>
       <div className="bg-[#fff8ef] pt-[5rem] flex justify-center items-center flex-col gap-[5%]">
@@ -42,22 +41,22 @@ const Page = ({ children }) => {
               <div className="text-center">
                 {details?.shippingInfo?.filter((item) => {
                   return item.shippingId.default === true
-                })[0].shippingId?.mobile}
+                })[0]?.shippingId?.mobile}
               </div>
               <div className="text-center">
                 {details?.shippingInfo?.filter((item) => {
                   return item.shippingId.default === true
-                })[0].shippingId?.city}
+                })[0]?.shippingId?.city}
               </div>
               <div className="text-center">
                 {details?.shippingInfo?.filter((item) => {
                   return item.shippingId.default === true
-                })[0].shippingId?.pincode}
+                })[0]?.shippingId?.pincode}
               </div>
               <div className="text-center">
                 {details?.shippingInfo?.filter((item) => {
                   return item.shippingId.default === true
-                })[0].shippingId?.address}
+                })[0]?.shippingId?.address}
               </div>
             </div>
           </div>

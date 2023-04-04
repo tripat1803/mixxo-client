@@ -233,7 +233,7 @@ function Cart() {
                   </tr>
                   <tr className="p-3 block">
                     <th className="text-left w-full text-xl">Shipping:</th>
-                    <td className="text-left w-full ">₹150</td>
+                    <td className="text-left w-full ">₹{shippingPrice}</td>
                   </tr>
                   <tr className="p-3 block border-black border border-x-0">
                     <th className="text-left w-full text-xl">Total:</th>
