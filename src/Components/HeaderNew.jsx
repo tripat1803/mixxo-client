@@ -8,6 +8,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Badge
 } from "@mui/material";
 import { CartContext } from "../Context/AllContext/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -46,7 +47,7 @@ export default function HeaderNew(props) {
       navigate("/profile/order");
     } else if (text === "Logout" || text.includes("Logout")) {
       user.signoutUser();
-    } else if(text === "Admin" || text.includes("Admin")){
+    } else if (text === "Admin" || text.includes("Admin")) {
       navigate("/admin");
     }
     setAnchorEl(null);
@@ -159,22 +160,32 @@ export default function HeaderNew(props) {
 
           {/* Cart Icon */}
           <div>
-            <button
-              onClick={togglecart}
-              className="relative border border-[#D6AB81] hover:bg-[#D6AB81] hover:bg-opacity-30 transition-all rounded-full w-[max-content] p-2"
-            >
-              <svg
-                width="23"
-                height="23"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <button onClick={togglecart} className="relative border border-[#D6AB81] hover:bg-[#D6AB81] hover:bg-opacity-30 transition-all rounded-full w-[max-content] p-2">
+              <Badge
+                badgeContent={cartData?.length}
+                sx={{
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                  "& .MuiBadge-badge": {
+                    color: "black",
+                    backgroundColor: "#FAE1C1",
+                  },
+                }}
               >
-                <path
-                  d="M9 24C7.35 24 6.015 25.35 6.015 27C6.015 28.65 7.35 30 9 30C10.65 30 12 28.65 12 27C12 25.35 10.65 24 9 24ZM0 0V3H3L8.4 14.385L6.375 18.06C6.135 18.48 6 18.975 6 19.5C6 21.15 7.35 22.5 9 22.5H27V19.5H9.63C9.42 19.5 9.255 19.335 9.255 19.125L9.3 18.945L10.65 16.5H21.825C22.95 16.5 23.94 15.885 24.45 14.955L29.82 5.22C29.94 5.01 30 4.755 30 4.5C30 3.675 29.325 3 28.5 3H6.315L4.905 0H0ZM24 24C22.35 24 21.015 25.35 21.015 27C21.015 28.65 22.35 30 24 30C25.65 30 27 28.65 27 27C27 25.35 25.65 24 24 24Z"
-                  fill="black"
-                />
-              </svg>
+                <svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 24C7.35 24 6.015 25.35 6.015 27C6.015 28.65 7.35 30 9 30C10.65 30 12 28.65 12 27C12 25.35 10.65 24 9 24ZM0 0V3H3L8.4 14.385L6.375 18.06C6.135 18.48 6 18.975 6 19.5C6 21.15 7.35 22.5 9 22.5H27V19.5H9.63C9.42 19.5 9.255 19.335 9.255 19.125L9.3 18.945L10.65 16.5H21.825C22.95 16.5 23.94 15.885 24.45 14.955L29.82 5.22C29.94 5.01 30 4.755 30 4.5C30 3.675 29.325 3 28.5 3H6.315L4.905 0H0ZM24 24C22.35 24 21.015 25.35 21.015 27C21.015 28.65 22.35 30 24 30C25.65 30 27 28.65 27 27C27 25.35 25.65 24 24 24Z"
+                    fill="black"
+                  />
+                </svg>
+              </Badge>
             </button>
             {procart && (
               <div className="absolute -right-28 border border-black top-16">
