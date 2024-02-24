@@ -52,25 +52,22 @@ function ProductCard({
   };
 
   return (
-    <div className=" w-[13rem] md:w-[20rem] h-full hover: cursor-pointer flex flex-col">
+    <div className="w-[14.5rem] xxs:w-[13rem] hover:cursor-pointer flex flex-col">
       <div
-        className="flex flex-col items-center"
+        className="w-full flex flex-col items-center"
         onClick={() => {
           navigate(`/product?product=${id}`);
           setFlag(true);
         }}
       >
-        <div className="h-[16.5rem] w-[90%] md:w-[61%] rounded-[100px] relative overflow-hidden object-contain chocolate">
+        <div className="h-[16.5rem] w-[90%] rounded-[100px] relative overflow-hidden object-contain chocolate">
           <img
             className="w-[120%] h-full object-cover"
             src={imageUrl}
             alt="prod-im"
-            style={{
-              width: "150%",
-            }}
           />
         </div>
-        <div className="flex flex-col items-center p-6 pb-0 mt-2">
+        <div className="flex flex-col items-center p-3 pb-0 mt-2">
           <Typography
             sx={{
               width: titleWidth,
@@ -96,7 +93,7 @@ function ProductCard({
       <div className="flex justify-center">
         <button
           onClick={handle}
-          className="w-[60%] p-2 bg-white text-[#8B5F4D] border-[2px] border-black rounded-[100px] font-bold text-[0.8rem] hover:bg-[#8B5F4D] hover:text-white hover:border-[#8B5F4D] transition-all duration-500"
+          className="w-[80%] p-2 bg-white text-[#8B5F4D] border-[2px] border-black rounded-[100px] font-bold text-[0.8rem] hover:bg-[#8B5F4D] hover:text-white hover:border-[#8B5F4D] transition-all duration-500"
         >
           {loader ? (
             <div className="lds-dual-ring2"></div>

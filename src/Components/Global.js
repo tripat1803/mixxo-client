@@ -42,6 +42,10 @@ export default function Global({ children }) {
     };
   }, [route, window.pageYOffset]);
 
+  if(route.includes("/admin")){
+    return <main>{children}</main>
+  }
+
   return (
     <main
       style={{

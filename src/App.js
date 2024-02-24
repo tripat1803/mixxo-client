@@ -13,7 +13,7 @@ import { Toaster } from "react-hot-toast";
 import About from "./Pages/About/About";
 import Global from "./Components/Global";
 import Category from "./Pages/Shop/components/Category";
-import AdminRoutes from "./Routes/AdminRoutes";
+import AdminRoutes from "./Pages/Admin/AdminRoutes";
 
 function App() {
   let user = useContext(UserContext);
@@ -39,7 +39,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/profile/*" element={<Profile />} />
             <Route path="/product" element={<Product />} />
-            <Route path="/admin/*" element={<AdminRoutes/>} />
+            <Route path="/admin/*" element={<AdminRoutes />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Global>

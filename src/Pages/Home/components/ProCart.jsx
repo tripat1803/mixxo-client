@@ -6,7 +6,7 @@ import { CartContext } from "../../../Context/AllContext/CartContext";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { ClickAwayListener, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { UserContext } from "../../../Context/AllContext/UserContext";
 
@@ -203,9 +203,11 @@ function CartCard({ item, quantity }) {
 function Cart(props) {
   let user = useContext(UserContext);
   let cart = useContext(CartContext);
+  let route = useLocation();
   let navigate = useNavigate();
   const [cartData, setCartData] = useState([]);
   const [mongoUser, setMongoUser] = useState();
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     setCartData(cart.cart);
@@ -215,14 +217,18 @@ function Cart(props) {
     setMongoUser(user.mongoUser);
   }, [user.mongoUser]);
 
+  useEffect(() => {
+    setLocation(route.pathname);
+  }, [route.pathname]);
+
   return (
     <ClickAwayListener onClickAway={props.data}>
       <div
         className={`w-[360px] h-[400px] z-30 duration-500 absolute top-[88%] ${
-          mongoUser ? "right-[94px]" : "right-[73px]"
+          (mongoUser) ? "right-[94px]" : "right-[73px]"
         } rounded-[15px] bg-[#F5F5F5] p-6 flex flex-col items-center justify-centers gap-[1.4rem]`}
       >
-        <div className="w-0 h-0 border border-transparent border-x-[20px] border-b-[30px] border-b-[#F5F5F5] absolute top-[-12%] right-[10px] m-8"></div>
+        {location === "/" && <div className="w-0 h-0 border border-transparent border-x-[20px] border-b-[30px] border-b-[#F5F5F5] absolute top-[-12%] right-[10px] m-8"></div>}
         <div className="w-full flex justify-between gap-[1rem]">
           <span className="flex justify-center items-center gap-[1rem]">
             <ArrowCircleUpRoundedIcon

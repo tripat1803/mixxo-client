@@ -14,7 +14,6 @@ import Empty from "../../../Components/Empty";
 import { toast } from "react-hot-toast";
 
 const Category = () => {
-
   let navigate = useNavigate();
   const { category } = useContext(CategoryContext);
   const [currCat, setCurrCat] = useState();
@@ -60,9 +59,9 @@ const Category = () => {
     }
   }, [queryParams.get("page"), queryParams.get("category"), category]);
 
-  // useEffect(() => {
-  //   setFlag(true);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if(flag){
     setTotal(0);
@@ -181,10 +180,16 @@ const Category = () => {
               width: "150px"
             }} />
           </Box>}
-          {(data.length !== 0) && ((!loader) && <Box sx={{
+          {(data.length !== 0) && ((!loader) && <Box sx={(data.length >= 3) ? {
             width: {md: "100%", lg: "90%", xl: "75%", sm: "100%", xs: "100%"},
             display: "grid",
             gridTemplateColumns: {md: "50% 50%", lg: "1fr 1fr 1fr", xl: "1fr 1fr 1fr", sm: "50% 50%", xs: "100%"},
+            placeItems: "center",
+            gap: "64px 0px"
+          } : {
+            width: {md: "100%", lg: "90%", xl: "75%", sm: "100%", xs: "100%"},
+            display: "grid",
+            gridTemplateColumns: {md: "50% 50%", lg: "1fr 1fr", xl: "1fr 1fr", sm: "50% 50%", xs: "100%"},
             placeItems: "center",
             gap: "64px 0px"
           }}>

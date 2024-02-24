@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useRef, useState } from "react";
-import subimg from "../../../Assets/subimg.jpg";
+import subimg from "../../../Assets/subcup.png";
 import { InfoUrl, publicApi } from "../../../Api/Api";
 import { toast } from "react-hot-toast";
 import axios from "axios";
@@ -12,7 +12,7 @@ const Sub = () => {
   return (
     <div id="faq" className="py-32 hidden sm:flex justify-center items-center">
       <div className="w-[80%] max-w-[1200px] flex flex-col lg:flex-row rounded-[20px] overflow-hidden">
-        <div className="hidden lg:block overflow-hidden">
+        <div className="hidden w-[60%] h-[400px] lg:block overflow-hidden">
           <img
             className="w-[100%] h-[100%] object-center object-cover"
             src={subimg}
@@ -22,8 +22,8 @@ const Sub = () => {
 
         <div className="relative rounded-[20px] lg:rounded-[0px] border lg:border-0 flex flex-col lg:flex-row space-y-10 lg:space-y-0 pb-32 lg:pb-0 overflow-hidden">
           <img
-            className="absolute h-[150%] z-10"
-            src={require("../../../Assets/Newsletter.jpeg")}
+            className="absolute w-[100%] h-[100%] z-10"
+            src={require("../../../Assets/Newsletter.png")}
           />
           <div className="text-center pt-[16px] flex flex-col items-center justify-start lg:justify-center space-y-4 text-[#793b18] z-[14]">
             <h2 className="text-[24px] w-full uppercase lg:mt-[-30%]">
@@ -36,7 +36,7 @@ const Sub = () => {
             </p>
           </div>
           <div className="flex flex-col justify-center z-[14]">
-            <div className="flex justify-center items-center lg:mt-[49%] lg:ml-[-49%] box-border rounded-[100px] z-[14]">
+            <div className="flex justify-center items-center lg:mt-[30%] lg:ml-[-20%] box-border rounded-[100px] z-[14]">
               <input
                 ref={Input}
                 className="h-12 w-56 rounded-[100px] border-none outline-none px-[16px] shadow-subsEmail placeholder:text-[1rem] placeholder:font-[540] placeholder:text-black"

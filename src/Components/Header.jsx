@@ -9,8 +9,7 @@ import {
   Badge,
   IconButton,
   Menu,
-  MenuItem,
-  styled,
+  MenuItem
 } from "@mui/material";
 import Logo from "../Assets/logo.png";
 import Signup from "../Pages/Home/components/Signup";
@@ -69,6 +68,8 @@ const Header = (props) => {
       navigate("/profile/order");
     } else if (text === "Logout" || text.includes("Logout")) {
       user.signoutUser();
+    } else if(text === "Admin" || text.includes("Admin")){
+      navigate("/admin");
     }
     setAnchorEl(null);
   };
@@ -136,7 +137,7 @@ const Header = (props) => {
         style={{
           width: "max-content",
           color: "black",
-          alignItems: "center",
+          alignItems: "center"
         }}
       >
         {navLinks.map((val) => {
@@ -420,6 +421,7 @@ const Header = (props) => {
       >
         <MenuItem onClick={handleClose}>My Account</MenuItem>
         <MenuItem onClick={handleClose}>Orders</MenuItem>
+        {mongo?.role === "admin" && <MenuItem onClick={handleClose}>Admin</MenuItem>}
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
       <Menu
@@ -434,6 +436,7 @@ const Header = (props) => {
       >
         <MenuItem onClick={handleClose}>My Account</MenuItem>
         <MenuItem onClick={handleClose}>Orders</MenuItem>
+        {mongo?.role === "admin" && <MenuItem onClick={handleClose}>Admin</MenuItem>}
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>

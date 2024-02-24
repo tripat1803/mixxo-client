@@ -26,17 +26,14 @@ function UserState({ children }) {
             setLoader(false);
         }).catch((err) => {
             if (err.request.status) {
-              return toast.error(err.response.data.message);
-            }else{
+                return toast.error(err.response.data.message);
+            } else {
                 toast.error("Something went wrong");
             }
-          });
+        });
     }
     const getMongoUser = async (user) => {
-        if(!Boolean(user)){
-            setLoader(false);
-        }
-        if(user){
+        if (user) {
             let token = await getIdToken(user);
             publicApi.get("/user/get", {
                 headers: {
@@ -48,6 +45,8 @@ function UserState({ children }) {
             }).catch(() => {
                 setLoader(false);
             });
+        } else {
+            setLoader(false);
         }
     }
 
@@ -59,7 +58,7 @@ function UserState({ children }) {
         });
     }, []);
 
-    if(mongoFlag){
+    if (mongoFlag) {
         getMongoUser(user);
         setMongoFlag(false);
     }

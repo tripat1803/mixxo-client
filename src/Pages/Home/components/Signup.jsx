@@ -81,7 +81,7 @@ const Signup = (props) => {
             } else if (error.code === "auth/argument-error") {
               toast.error("Argument error");
             } else {
-              toast.error(error.message);
+              toast.error("Some error occured");
             }
             user.setLoader(false);
           });
@@ -105,7 +105,7 @@ const Signup = (props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="hidden md:block w-full md:w-[45%]">
-          <img src={require("../../../Assets/cup.jpeg")} style={{
+          <img src={require("../../../Assets/subimg.jpg")} style={{
             height: "100%",
           }} />
         </div>

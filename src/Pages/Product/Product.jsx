@@ -63,6 +63,10 @@ const Product = () => {
     getCateoryProducts(queryParams.get("product"));
   }, [productId]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       {!loader || !loader2 ? (

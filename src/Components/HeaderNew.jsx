@@ -46,6 +46,8 @@ export default function HeaderNew(props) {
       navigate("/profile/order");
     } else if (text === "Logout" || text.includes("Logout")) {
       user.signoutUser();
+    } else if(text === "Admin" || text.includes("Admin")){
+      navigate("/admin");
     }
     setAnchorEl(null);
   };
@@ -111,9 +113,9 @@ export default function HeaderNew(props) {
       width: "100vw",
       background: props.background,
       position: props.position
-    }: {
+    } : {
       position: "static"
-    }} className="z-[25] duration-500 lg:px-20 px-10">
+    }} className="z-[25] duration-500 lg:px-20 px-4">
       <div className="hidden md:flex items-center justify-evenly">
         {/* Logo */}
         <div className="flex-1 pt-2">
@@ -156,28 +158,30 @@ export default function HeaderNew(props) {
           })}
 
           {/* Cart Icon */}
-          <button
-            onClick={togglecart}
-            className="relative border border-[#D6AB81] hover:bg-[#D6AB81] hover:bg-opacity-30 transition-all rounded-full w-[max-content] p-2"
-          >
-            <svg
-              width="23"
-              height="23"
-              viewBox="0 0 30 30"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          <div>
+            <button
+              onClick={togglecart}
+              className="relative border border-[#D6AB81] hover:bg-[#D6AB81] hover:bg-opacity-30 transition-all rounded-full w-[max-content] p-2"
             >
-              <path
-                d="M9 24C7.35 24 6.015 25.35 6.015 27C6.015 28.65 7.35 30 9 30C10.65 30 12 28.65 12 27C12 25.35 10.65 24 9 24ZM0 0V3H3L8.4 14.385L6.375 18.06C6.135 18.48 6 18.975 6 19.5C6 21.15 7.35 22.5 9 22.5H27V19.5H9.63C9.42 19.5 9.255 19.335 9.255 19.125L9.3 18.945L10.65 16.5H21.825C22.95 16.5 23.94 15.885 24.45 14.955L29.82 5.22C29.94 5.01 30 4.755 30 4.5C30 3.675 29.325 3 28.5 3H6.315L4.905 0H0ZM24 24C22.35 24 21.015 25.35 21.015 27C21.015 28.65 22.35 30 24 30C25.65 30 27 28.65 27 27C27 25.35 25.65 24 24 24Z"
-                fill="black"
-              />
-            </svg>
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 24C7.35 24 6.015 25.35 6.015 27C6.015 28.65 7.35 30 9 30C10.65 30 12 28.65 12 27C12 25.35 10.65 24 9 24ZM0 0V3H3L8.4 14.385L6.375 18.06C6.135 18.48 6 18.975 6 19.5C6 21.15 7.35 22.5 9 22.5H27V19.5H9.63C9.42 19.5 9.255 19.335 9.255 19.125L9.3 18.945L10.65 16.5H21.825C22.95 16.5 23.94 15.885 24.45 14.955L29.82 5.22C29.94 5.01 30 4.755 30 4.5C30 3.675 29.325 3 28.5 3H6.315L4.905 0H0ZM24 24C22.35 24 21.015 25.35 21.015 27C21.015 28.65 22.35 30 24 30C25.65 30 27 28.65 27 27C27 25.35 25.65 24 24 24Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
             {procart && (
               <div className="absolute -right-28 border border-black top-16">
                 <Cart data={togglecart} />
               </div>
             )}
-          </button>
+          </div>
         </div>
 
         {/* User Icon */}
@@ -230,15 +234,13 @@ export default function HeaderNew(props) {
           </Link>
         </div>
 
-        {/* Other logos */}
         <div className="flex gap-3 items-center">
-          {/* cart */}
           <Link
             to="/cart"
             className=" bg-[#D6AB81] bg-opacity-30 rounded-full p-[6px]"
           >
             <img
-              className="w-6"
+              className="w-4 xxs:w-6"
               src={require("../Assets/shopCart.svg").default}
               alt=""
             />
@@ -250,11 +252,45 @@ export default function HeaderNew(props) {
             className=" bg-[#D6AB81] bg-opacity-30 rounded-full p-1"
           >
             <img
-              className="w-7"
+              className="w-4 xxs:w-6"
               src={require("../Assets/setting.svg").default}
               alt=""
             />
           </button>
+          <div className="flex-1 flex justify-end">
+            {mongo ? (
+              <IconButton
+                id="fade-button"
+                aria-controls={open ? "fade-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+              >
+                <Avatar
+                  sx={{
+                    background: "#C07E49",
+                    color: "white",
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  {mongo.firstname[0]}
+                </Avatar>
+              </IconButton>
+            ) : (
+              <AccountCircleIcon
+                onClick={toggleModel}
+                sx={{
+                  color: txtColor,
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                fontSize="large"
+              />
+            )}
+          </div>
         </div>
       </div>
 
@@ -404,6 +440,7 @@ export default function HeaderNew(props) {
       >
         <MenuItem onClick={handleClose}>My Account</MenuItem>
         <MenuItem onClick={handleClose}>Orders</MenuItem>
+        {mongo?.role === "admin" && <MenuItem onClick={handleClose}>Admin</MenuItem>}
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
       <Menu
@@ -418,6 +455,7 @@ export default function HeaderNew(props) {
       >
         <MenuItem onClick={handleClose}>My Account</MenuItem>
         <MenuItem onClick={handleClose}>Orders</MenuItem>
+        {mongo?.role === "admin" && <MenuItem onClick={handleClose}>Admin</MenuItem>}
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
 

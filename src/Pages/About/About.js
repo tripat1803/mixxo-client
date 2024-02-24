@@ -1,5 +1,5 @@
 import { Box, styled, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Review from "../../Components/Review";
 
 const Heading = styled(Typography)(({ theme }) => ({
@@ -15,6 +15,9 @@ const Body = styled(Typography)(({ theme }) => ({
 }));
 
 function About() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Box

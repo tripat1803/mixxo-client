@@ -79,33 +79,21 @@ const Page = ({ data, id, related, setFlag, loader2 }) => {
           <Details item={productData} id={productId} />
         </div>
 
-        <div className="flex flex-col items-center lg:mt-44 py-10">
-          <h1 className="font-black text-2xl py-16">You may also like</h1>
-          <Box
-            sx={
-              loader && {
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }
-            }
-          >
-            {!loader && relatedData && (
-              <Box>
-                {relatedData?.map((item) => {
-                  return (
-                    <ProductCard
-                      key={item._id}
-                      id={item._id}
-                      productDetails={item.details[0]}
-                      imageUrl={item.image[0]?.url}
-                      title={item.name}
-                      setFlag={setFlag}
-                    />
-                  );
-                })}
-              </Box>
-            )}
+        <div className="w-[100%] flex flex-col lg:mt-44 py-10">
+          <h1 className="w-[100%] text-center font-black text-2xl py-16">You may also like</h1>
+          <div className="w-[100%] flex justify-evenly">
+            {(!loader && relatedData) && relatedData?.map((item) => {
+              return (
+                <ProductCard
+                  key={item._id}
+                  id={item._id}
+                  productDetails={item.details[0]}
+                  imageUrl={item.image[0]?.url}
+                  title={item.name}
+                  setFlag={setFlag}
+                />
+              );
+            })}
             {loader && (
               <Box
                 sx={{
@@ -123,7 +111,7 @@ const Page = ({ data, id, related, setFlag, loader2 }) => {
                 />
               </Box>
             )}
-          </Box>
+          </div>
         </div>
 
         <Reviews productId={productId} total={productData?.totalReviews} />

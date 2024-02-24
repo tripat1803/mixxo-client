@@ -2,6 +2,21 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 
 export default function Review() {
+
+  const imageArr = [
+    require("../Assets/Review2/Image1.jpg"),
+    require("../Assets/Review2/Image2.jpg"),
+    require("../Assets/Review2/Image3.jpg"),
+    require("../Assets/Review2/Image4.jpg"),
+    require("../Assets/Review2/Image5.jpg"),
+    require("../Assets/Review2/Image6.jpg"),
+    require("../Assets/Review2/Image7.jpg"),
+    require("../Assets/Review2/Image8.jpg"),
+    require("../Assets/Review2/Image9.jpg"),
+    require("../Assets/Review2/Image10.jpg"),
+    require("../Assets/Review2/Image11.jpg"),
+  ];
+
   return (
     <div className="bg-gradient-to-b from-[#FE6B0180] from-45% to-[#F79E1B80]">
       <div
@@ -17,13 +32,13 @@ export default function Review() {
           <div className="bg-[#ffd9a7] h-[max-content] w-[95vw] md:w-[78vw] lg:w-[100%] p-[16px] mt-4 rounded-[164px] sm:rounded-[64px]">
             <div className="bg-[#FBE3D2] max-h-[60vh] shadow-reviewShadow rounded-[148px]  sm:rounded-[48px] overflow-scroll -webkit-overflow-scroll">
               <Marquee gradientWidth={0} speed={40}>
-                <ReviewCard key="sdf" />
+                <ReviewCard key="sdf" imageArr={imageArr.slice(0, 5)} />
               </Marquee>
               <Marquee gradientWidth={0} speed={30}>
-                <ReviewCard key="dfgfd" />
+                <ReviewCard key="dfgfd" imageArr={imageArr.slice(5, 10)} />
               </Marquee>
               <Marquee gradientWidth={0} speed={40}>
-                <ReviewCard key="dfgfdf" />
+                <ReviewCard key="dfgfdf" imageArr={imageArr.slice(2, 6)} />
               </Marquee>
             </div>
           </div>
@@ -42,16 +57,7 @@ export default function Review() {
   );
 }
 
-function ReviewCard({ key = "" }) {
-  const imageArr = [
-    require("../Assets/Review/Image1.jpeg"),
-    require("../Assets/Review/Image2.jpeg"),
-    require("../Assets/Review/Image3.jpeg"),
-    require("../Assets/Review/Image4.png"),
-    require("../Assets/Review/Image5.png"),
-    require("../Assets/Review/Image6.png"),
-    require("../Assets/Review/Image7.png"),
-  ];
+function ReviewCard({ imageArr, key }) {
 
   return (
     <div className="flex flex-row justify-around row">
@@ -62,7 +68,7 @@ function ReviewCard({ key = "" }) {
         >
           <img
             className="absolute w-[100%] h-[100%]"
-            src={imageArr[Math.floor(Math.random() * 7)]}
+            src={image}
             alt="review-im"
           />
           <p className="revOverlay">

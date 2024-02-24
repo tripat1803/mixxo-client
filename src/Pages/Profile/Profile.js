@@ -8,6 +8,7 @@ import Account from "./components/Account";
 import Order from "./components/Order";
 
 const Profile = ({ comp }) => {
+
   let user = useContext(UserContext);
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(false);
@@ -23,6 +24,10 @@ const Profile = ({ comp }) => {
   useEffect(() => {
     setLoader(user.loader);
   }, [user.loader]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

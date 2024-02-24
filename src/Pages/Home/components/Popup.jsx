@@ -42,7 +42,7 @@ const Popup = (props) => {
           } else if (error.code === "auth/argument-error") {
             toast.error("Argument error");
           } else {
-            toast.error(error.message);
+            toast.error("Some error occured");
           }
           user.setLoader(false);
         });
@@ -61,8 +61,8 @@ const Popup = (props) => {
         className="w-[80%] sm:w-[70%] md:w-[80%] lg:w-[80%] max-w-[900px] h-[max-content] bg-[#efd2ac] text-black rounded-[80px] overflow-hidden flex flex-col md:flex-row absolute popcon"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="hidden md:block w-full md:w-[45%]">
-          <img src={require("../../../Assets/cup.jpeg")} style={{
+        <div className="hidden md:block md:w-[45%]">
+          <img src={require("../../../Assets/subimg.jpg")} style={{
             height: "100%",
           }} />
         </div>
